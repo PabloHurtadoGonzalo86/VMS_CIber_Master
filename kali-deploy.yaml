@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kali
+  namespace: cyber-lab
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kali
+  template:
+    metadata:
+      labels:
+        app: kali
+    spec:
+      containers:
+      - name: kali
+        image: ocholoko888/kali-custom-vnc:latest
+        ports:
+        - containerPort: 6080
+          name: novnc
+        - containerPort: 5901
+          name: vnc
+        securityContext:
+          privileged: true
+        env:
+        - name: DISPLAY
+          value: ":1"
+        resources:
+          limits:
+            memory: "15Gi"
+            cpu: "10"
+            ephemeral-storage: "20Gi"
+          requests:
+            memory: "10Gi"
+            cpu: "8"
+            ephemeral-storage: "10Gi"

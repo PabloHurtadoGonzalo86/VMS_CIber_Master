@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metasploitable
+  namespace: cyber-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metasploitable
+  template:
+    metadata:
+      labels:
+        app: metasploitable
+    spec:
+      containers:
+      - name: metasploitable
+        image: ocholoko888/metasploitable2-arm64:latest
+        ports:
+        - containerPort: 80
+          name: http
+        - containerPort: 22
+          name: ssh
