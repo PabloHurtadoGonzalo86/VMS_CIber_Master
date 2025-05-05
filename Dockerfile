@@ -1,4 +1,4 @@
-FROM kalilinux/kali-rolling:arm64
+FROM kalilinux/kali-rolling:latest
 
 # Actualizar e instalar herramientas necesarias
 RUN apt-get update && \
