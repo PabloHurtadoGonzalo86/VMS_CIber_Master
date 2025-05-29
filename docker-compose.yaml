@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  kali-attacker:
+    build:
+      context: . # Directorio raíz donde está el Dockerfile de Kali y startup.sh
+      dockerfile: Dockerfile # Nombre del Dockerfile para Kali
+    image: ocholoko888/vms-kali:latest # ¡¡MODIFICA ESTO con tu usuario de Docker Hub!!
+    container_name: kali-attacker-lab
+    privileged: true
+    ports:
+      - "31000:6080" # noVNC
+      - "31001:5901" # VNC directo
+    networks:
+      - cyber-lab-net # Conecta a la red definida abajo
+    depends_on:
+      - metasploitable-victim # Inicia Kali después de Metasploitable
+    stdin_open: true # Mantiene stdin abierto
+    tty: true        # Asigna un pseudo-TTY
+
+  metasploitable-victim:
+    build:
+      context: ./DOckerFile-metaex # Directorio donde está el Dockerfile de Metasploitable
+      dockerfile: Dockerfile        # Nombre del Dockerfile para Metasploitable
+    image: TU_USUARIO_DOCKERHUB/vms-metasploitable:latest # ¡¡MODIFICA ESTO con tu usuario de Docker Hub!!
+    container_name: metasploitable-victim-lab
+    ports:
+      - "31002:80"    # Web
+      - "31003:22"    # SSH
+      - "21:21"       # FTP
+      - "23:23"       # Telnet
+      - "25:25"       # SMTP
+      - "53:53/udp"   # DNS
+      - "53:53/tcp"   # DNS
+      - "139:139"     # NetBIOS
+      - "445:445"     # SMB
+      - "3306:3306"   # MySQL
+    networks:
+      - cyber-lab-net # Conecta a la red definida abajo
+    stdin_open: true
+    tty: true
+
+networks:
+  cyber-lab-net: # Define la red personalizada
+    driver: bridge # Tipo de red
+    name: cyber-lab-custom-net # Nombre explícito de la red que se creará en Docker

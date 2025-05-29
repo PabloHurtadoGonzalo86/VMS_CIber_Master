@@ -22,7 +22,7 @@ RUN apt-get update && \
 
 # Configurar X11 y VNC con password explícito
 RUN mkdir -p /root/.vnc /root/.config && \
-    printf "kali12345\nkali12345\n\n" | vncpasswd && \
+    printf "kali1234\nkali1234\n\n" | vncpasswd && \
     chmod 600 /root/.vnc/passwd && \
     chmod -R 755 /root/.vnc
 
