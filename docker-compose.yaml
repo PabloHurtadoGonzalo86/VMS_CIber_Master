@@ -22,7 +22,7 @@ services:
     build:
       context: ./DOckerFile-metaex # Directorio donde está el Dockerfile de Metasploitable
       dockerfile: Dockerfile        # Nombre del Dockerfile para Metasploitable
-    image: TU_USUARIO_DOCKERHUB/vms-metasploitable:latest # ¡¡MODIFICA ESTO con tu usuario de Docker Hub!!
+    image: ocholoko888/vms-metasploitable:latest # ¡¡MODIFICA ESTO con tu usuario de Docker Hub!!
     container_name: metasploitable-victim-lab
     ports:
       - "31002:80"    # Web
