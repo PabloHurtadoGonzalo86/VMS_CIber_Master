@@ -293,25 +293,25 @@ EXPOSE 21 22 23 25 53 80 139 445 3306 5432 8009 8180
 ```
 - Exposes multiple ports for different vulnerable services
 
-#### 4. `DOckerFile-metaex/start_services.sh` - Iniciador de Servicios Vulnerables
+#### 4. `DOckerFile-metaex/start_services.sh` - Vulnerable Services Launcher
 
 ```bash
 #!/bin/bash
-service ssh start      # Inicia servidor SSH
-service apache2 start  # Inicia servidor web
-service mysql start    # Inicia base de datos
-service xinetd start   # Inicia súper-servidor
-service vsftpd start   # Inicia servidor FTP
-service smbd start     # Inicia servicios Samba
-service bind9 start    # Inicia servidor DNS
-service postfix start  # Inicia servidor de correo
+service ssh start      # Start SSH server
+service apache2 start  # Start web server
+service mysql start    # Start database
+service xinetd start   # Start super-server
+service vsftpd start   # Start FTP server
+service smbd start     # Start Samba services
+service bind9 start    # Start DNS server
+service postfix start  # Start mail server
 ```
 
-Cada servicio representa una superficie de ataque diferente para practicar.
+Each service represents a different attack surface for practice.
 
-### Archivos de Kubernetes - La Orquestación
+### Kubernetes Files - The Orchestration
 
-#### 5. `namespace_ciber.yaml` - Creador del Espacio de Trabajo
+#### 5. `namespace_ciber.yaml` - Workspace Creator
 
 ```yaml
 apiVersion: v1
@@ -320,29 +320,29 @@ metadata:
   name: cyber-lab
 ```
 
-**¿Qué es un Namespace?**
-Un namespace en Kubernetes es como una habitación virtual dentro del cluster. Separa recursos y evita conflictos con otras aplicaciones.
+**What is a Namespace?**
+A namespace in Kubernetes is like a virtual room inside the cluster. It separates resources and avoids conflicts with other applications.
 
-**¿Por qué necesitamos esto?**
-- **Aislamiento**: Nuestro laboratorio no interfiere con otras aplicaciones
-- **Organización**: Todos los recursos relacionados están agrupados
-- **Seguridad**: Podemos aplicar políticas específicas a este espacio
+**Why do we need this?**
+- **Isolation**: Our laboratory doesn't interfere with other applications
+- **Organization**: All related resources are grouped together
+- **Security**: We can apply specific policies to this space
 
-#### 6. `kali-deploy.yaml` - Configuración de Despliegue para Kali
+#### 6. `kali-deploy.yaml` - Kali Deployment Configuration
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 ```
-- **Deployment**: Tipo de recurso que gestiona pods (contenedores en ejecución)
+- **Deployment**: Type of resource that manages pods (running containers)
 
 ```yaml
 metadata:
   name: kali
   namespace: cyber-lab
 ```
-- **name**: Identificador único para este despliegue
-- **namespace**: Especifica en qué namespace crear este recurso
+- **name**: Unique identifier for this deployment
+- **namespace**: Specifies in which namespace to create this resource
 
 ```yaml
 spec:
@@ -350,8 +350,8 @@ spec:
     type: Recreate
   replicas: 1
 ```
-- **strategy: Recreate**: Si necesita actualizar, mata el pod viejo antes de crear uno nuevo
-- **replicas: 1**: Solo mantener una instancia corriendo
+- **strategy: Recreate**: If it needs to update, kill the old pod before creating a new one
+- **replicas: 1**: Only keep one instance running
 
 ```yaml
 selector:
@@ -362,7 +362,7 @@ template:
     labels:
       app: kali
 ```
-- **selector/labels**: Sistema de etiquetado que conecta el Deployment con los pods
+- **selector/labels**: Labeling system that connects the Deployment with the pods
 
 ```yaml
 containers:
@@ -374,14 +374,14 @@ containers:
   - containerPort: 5901
     name: vnc
 ```
-- **image**: Especifica qué imagen de contenedor usar
-- **ports**: Define qué puertos expone el contenedor
+- **image**: Specifies which container image to use
+- **ports**: Defines which ports the container exposes
 
 ```yaml
 securityContext:
   privileged: true
 ```
-- **privileged: true**: Da acceso especial al contenedor (necesario para herramientas de hacking)
+- **privileged: true**: Gives special access to the container (necessary for hacking tools)
 
 ```yaml
 resources:
@@ -394,11 +394,11 @@ resources:
     cpu: "8"
     ephemeral-storage: "10Gi"
 ```
-- **limits**: Máximo de recursos que puede usar
-- **requests**: Recursos mínimos garantizados
-- Kali necesita muchos recursos porque ejecuta herramientas pesadas
+- **limits**: Maximum resources it can use
+- **requests**: Minimum guaranteed resources
+- Kali needs many resources because it runs heavy tools
 
-#### 7. `kali-service.yaml` - Configuración de Red para Kali
+#### 7. `kali-service.yaml` - Kali Network Configuration
 
 ```yaml
 apiVersion: v1
@@ -409,8 +409,8 @@ metadata:
 spec:
   type: NodePort
 ```
-- **Service**: Recurso que expone pods a la red
-- **NodePort**: Tipo de servicio que abre puertos en todos los nodos del cluster
+- **Service**: Resource that exposes pods to the network
+- **NodePort**: Type of service that opens ports on all cluster nodes
 
 ```yaml
 selector:
@@ -422,247 +422,247 @@ ports:
   nodePort: 31000
   name: novnc
 ```
-- **selector**: Conecta este servicio con los pods etiquetados como "kali"
-- **port**: Puerto interno del servicio
-- **targetPort**: Puerto del contenedor
-- **nodePort**: Puerto externo accesible desde fuera del cluster
+- **selector**: Connects this service with pods labeled as "kali"
+- **port**: Internal service port
+- **targetPort**: Container port
+- **nodePort**: External port accessible from outside the cluster
 
-#### 8. `meta-deploy.yaml` y `meta-service.yaml` - Configuración para Metasploitable
+#### 8. `meta-deploy.yaml` and `meta-service.yaml` - Metasploitable Configuration
 
-Similar a los archivos de Kali, pero con configuraciones específicas para la máquina vulnerable:
-- Menos recursos (la máquina víctima no necesita tanto poder)
-- Puertos diferentes (80 para web, 22 para SSH)
-- Sin privilegios especiales (no necesita acceso a bajo nivel)
+Similar to the Kali files, but with specific configurations for the vulnerable machine:
+- Fewer resources (the victim machine doesn't need as much power)
+- Different ports (80 for web, 22 for SSH)
+- No special privileges (doesn't need low-level access)
 
-## Cómo Todo Funciona Junto (El Flujo Completo)
+## How Everything Works Together (The Complete Flow)
 
-### Fase 1: Construcción de Imágenes (Build Time)
+### Phase 1: Image Building (Build Time)
 
-1. **Docker lee el Dockerfile de Kali**:
-   - Descarga la imagen base de Kali Linux
-   - Instala XFCE4, VNC, noVNC y herramientas de hacking
-   - Configura contraseñas y permisos
-   - Copia el script de inicio
-   - Crea la imagen final
+1. **Docker reads the Kali Dockerfile**:
+   - Downloads the Kali Linux base image
+   - Installs XFCE4, VNC, noVNC and hacking tools
+   - Configures passwords and permissions
+   - Copies the startup script
+   - Creates the final image
 
-2. **Docker lee el Dockerfile de Metasploitable**:
-   - Descarga Ubuntu 20.04
-   - Instala servicios vulnerables
-   - Configura usuarios inseguros
-   - Copia scripts de inicio de servicios
-   - Crea la imagen vulnerable
+2. **Docker reads the Metasploitable Dockerfile**:
+   - Downloads Ubuntu 20.04
+   - Installs vulnerable services
+   - Configures insecure users
+   - Copies service startup scripts
+   - Creates the vulnerable image
 
-### Fase 2: Despliegue en Kubernetes (Deploy Time)
+### Phase 2: Kubernetes Deployment (Deploy Time)
 
-1. **Kubernetes lee namespace_ciber.yaml**:
-   - Crea el namespace "cyber-lab"
-   - Establece el espacio de trabajo aislado
+1. **Kubernetes reads namespace_ciber.yaml**:
+   - Creates the "cyber-lab" namespace
+   - Establishes the isolated workspace
 
-2. **Kubernetes lee kali-deploy.yaml**:
-   - Programa la creación de un pod Kali
-   - Asigna recursos (15GB RAM, 10 CPUs, etc.)
-   - Descarga la imagen de Kali si no existe localmente
+2. **Kubernetes reads kali-deploy.yaml**:
+   - Schedules the creation of a Kali pod
+   - Allocates resources (15GB RAM, 10 CPUs, etc.)
+   - Downloads the Kali image if it doesn't exist locally
 
-3. **Kubernetes lee kali-service.yaml**:
-   - Crea un servicio que expone Kali al exterior
-   - Mapea puertos internos a externos (6080→31000, 5901→31001)
+3. **Kubernetes reads kali-service.yaml**:
+   - Creates a service that exposes Kali externally
+   - Maps internal ports to external ones (6080→31000, 5901→31001)
 
-4. **Kubernetes lee meta-deploy.yaml y meta-service.yaml**:
-   - Hace lo mismo para Metasploitable
-   - Expone puertos web (80→31002) y SSH (22→31003)
+4. **Kubernetes reads meta-deploy.yaml and meta-service.yaml**:
+   - Does the same for Metasploitable
+   - Exposes web ports (80→31002) and SSH (22→31003)
 
-### Fase 3: Inicio de Contenedores (Runtime)
+### Phase 3: Container Startup (Runtime)
 
-1. **El contenedor Kali inicia**:
-   - Ejecuta `/root/startup.sh`
-   - El script limpia procesos previos
-   - Inicia Xvfb (pantalla virtual)
-   - Inicia XFCE4 (entorno de escritorio)
-   - Inicia x11vnc (servidor VNC)
-   - Inicia noVNC (proxy web)
+1. **The Kali container starts**:
+   - Executes `/root/startup.sh`
+   - The script cleans previous processes
+   - Starts Xvfb (virtual display)
+   - Starts XFCE4 (desktop environment)
+   - Starts x11vnc (VNC server)
+   - Starts noVNC (web proxy)
 
-2. **El contenedor Metasploitable inicia**:
-   - Ejecuta `/start_services.sh`
-   - Inicia SSH, Apache, MySQL, FTP, etc.
-   - Todos los servicios quedan disponibles
+2. **The Metasploitable container starts**:
+   - Executes `/start_services.sh`
+   - Starts SSH, Apache, MySQL, FTP, etc.
+   - All services become available
 
-### Fase 4: Acceso y Uso (User Time)
+### Phase 4: Access and Usage (User Time)
 
-1. **Usuario accede a Kali via web**:
-   - Navega a `http://cluster-ip:31000`
-   - noVNC muestra el escritorio XFCE4
-   - Usuario puede usar herramientas gráficas
+1. **User accesses Kali via web**:
+   - Navigates to `http://cluster-ip:31000`
+   - noVNC displays the XFCE4 desktop
+   - User can use graphical tools
 
-2. **Usuario realiza reconocimiento**:
-   - Abre terminal en Kali
-   - Ejecuta `nmap` para encontrar Metasploitable
-   - Identifica servicios vulnerables
+2. **User performs reconnaissance**:
+   - Opens terminal in Kali
+   - Runs `nmap` to find Metasploitable
+   - Identifies vulnerable services
 
-3. **Usuario practica ataques**:
-   - Usa Metasploit para explotar vulnerabilidades
-   - Accede via SSH con credenciales débiles
-   - Explora el servidor web vulnerable
+3. **User practices attacks**:
+   - Uses Metasploit to exploit vulnerabilities
+   - Accesses via SSH with weak credentials
+   - Explores the vulnerable web server
 
-## Requisitos del Sistema (¿Qué necesitas?)
+## System Requirements (What do you need?)
 
-### Requisitos de Hardware
+### Hardware Requirements
 
-**¿Por qué necesitamos tantos recursos?**
+**Why do we need so many resources?**
 
-- **Memoria (RAM)**: 
-  - Kali Linux con entorno gráfico: 4-8GB
-  - Metasploitable con múltiples servicios: 2-4GB
+- **Memory (RAM)**: 
+  - Kali Linux with graphical environment: 4-8GB
+  - Metasploitable with multiple services: 2-4GB
   - Kubernetes overhead: 2-4GB
-  - **Total mínimo**: 16GB (recomendado: 32GB)
+  - **Minimum total**: 16GB (recommended: 32GB)
 
 - **CPU**:
-  - Herramientas de hacking son intensivas en CPU
-  - Múltiples contenedores ejecutándose simultáneamente
-  - **Mínimo**: 4 cores (recomendado: 8+ cores)
+  - Hacking tools are CPU-intensive
+  - Multiple containers running simultaneously
+  - **Minimum**: 4 cores (recommended: 8+ cores)
 
-- **Almacenamiento**:
-  - Imágenes de Docker: 10-15GB
-  - Logs y datos temporales: 10-20GB
-  - Espacio para herramientas adicionales: 20GB+
-  - **Mínimo**: 50GB (recomendado: 100GB)
+- **Storage**:
+  - Docker images: 10-15GB
+  - Logs and temporary data: 10-20GB
+  - Space for additional tools: 20GB+
+  - **Minimum**: 50GB (recommended: 100GB)
 
-### Software Requerido
+### Required Software
 
 #### Docker
-**¿Qué es?** Motor de contenedores que ejecuta las aplicaciones aisladas.
-**¿Cómo instalarlo?** Depende de tu sistema operativo:
+**What is it?** Container engine that runs isolated applications.
+**How to install?** Depends on your operating system:
 - **Ubuntu/Debian**: `sudo apt install docker.io`
 - **CentOS/RHEL**: `sudo yum install docker`
 - **Windows/Mac**: Docker Desktop
 
 #### Kubernetes
-**Opciones para principiantes:**
+**Options for beginners:**
 
-1. **minikube** (Recomendado para aprender):
-   - Kubernetes completo en una sola máquina
-   - Fácil de instalar y usar
-   - Perfecto para desarrollo y aprendizaje
+1. **minikube** (Recommended for learning):
+   - Complete Kubernetes on a single machine
+   - Easy to install and use
+   - Perfect for development and learning
 
 2. **kind** (Kubernetes in Docker):
-   - Crea clusters usando contenedores Docker
-   - Muy ligero y rápido
-   - Ideal para pruebas
+   - Creates clusters using Docker containers
+   - Very lightweight and fast
+   - Ideal for testing
 
-3. **k3s** (Kubernetes ligero):
-   - Versión simplificada de Kubernetes
-   - Menor uso de recursos
-   - Bueno para sistemas con recursos limitados
+3. **k3s** (Lightweight Kubernetes):
+   - Simplified version of Kubernetes
+   - Lower resource usage
+   - Good for resource-limited systems
 
 #### kubectl
-**¿Qué es?** Herramienta de línea de comandos para interactuar con Kubernetes.
-**Instalación**: Se incluye con minikube, o se puede descargar por separado.
+**What is it?** Command-line tool for interacting with Kubernetes.
+**Installation**: Included with minikube, or can be downloaded separately.
 
-## Guía de Instalación Paso a Paso (Para Principiantes)
+## Step-by-Step Installation Guide (For Beginners)
 
-### Paso 1: Preparar el Sistema Base
+### Step 1: Prepare the Base System
 
-#### En Ubuntu/Debian:
+#### On Ubuntu/Debian:
 ```bash
-# Actualizar el sistema
+# Update the system
 sudo apt update && sudo apt upgrade -y
 
-# Instalar Docker
+# Install Docker
 sudo apt install docker.io -y
 sudo systemctl start docker
 sudo systemctl enable docker
 
-# Añadir tu usuario al grupo docker
+# Add your user to docker group
 sudo usermod -aG docker $USER
-# Cerrar sesión y volver a entrar
+# Log out and log back in
 
-# Instalar minikube
+# Install minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
-# Instalar kubectl
+# Install kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install kubectl /usr/local/bin/kubectl
 ```
 
-### Paso 2: Iniciar el Cluster de Kubernetes
+### Step 2: Start the Kubernetes Cluster
 
 ```bash
-# Iniciar minikube con recursos adecuados
+# Start minikube with adequate resources
 minikube start --memory=16384 --cpus=8 --disk-size=50g
 
-# Verificar que funciona
+# Verify it works
 kubectl cluster-info
 kubectl get nodes
 ```
 
-**¿Qué está pasando?**
-- minikube crea una máquina virtual con Kubernetes
-- Asigna 16GB RAM, 8 CPUs y 50GB de disco
-- kubectl se conecta automáticamente a este cluster
+**What's happening?**
+- minikube creates a virtual machine with Kubernetes
+- Allocates 16GB RAM, 8 CPUs and 50GB disk
+- kubectl automatically connects to this cluster
 
-### Paso 3: Descargar el Proyecto
+### Step 3: Download the Project
 
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/PabloHurtadoGonzalo86/VMS_CIber_Master.git
 
-# Entrar al directorio
+# Enter the directory
 cd VMS_CIber_Master
 
-# Listar los archivos para verificar
+# List files to verify
 ls -la
 ```
 
-### Paso 4: Desplegar el Laboratorio
+### Step 4: Deploy the Laboratory
 
 ```bash
-# Crear el namespace
+# Create the namespace
 kubectl apply -f namespace_ciber.yaml
 
-# Verificar que se creó
+# Verify it was created
 kubectl get namespaces
 
-# Desplegar Kali Linux
+# Deploy Kali Linux
 kubectl apply -f kali-deploy.yaml
 kubectl apply -f kali-service.yaml
 
-# Desplegar Metasploitable
+# Deploy Metasploitable
 kubectl apply -f meta-deploy.yaml
 kubectl apply -f meta-service.yaml
 ```
 
-### Paso 5: Verificar el Despliegue
+### Step 5: Verify the Deployment
 
 ```bash
-# Ver el estado de los pods
+# See the status of the pods
 kubectl get pods -n cyber-lab
 
-# Esperar hasta que ambos pods estén "Running"
-# Esto puede tomar varios minutos la primera vez
+# Wait until both pods are "Running"
+# This can take several minutes the first time
 
-# Ver los servicios
+# See the services
 kubectl get services -n cyber-lab
 
-# Obtener las URLs de acceso
+# Get access URLs
 minikube service list -n cyber-lab
 ```
 
-### Paso 6: Acceder al Laboratorio
+### Step 6: Access the Laboratory
 
-1. **Obtener la IP del cluster**:
+1. **Get the cluster IP**:
    ```bash
    minikube ip
    ```
 
-2. **Acceder a Kali Linux**:
-   - Abrir navegador web
-   - Navegar a `http://IP_DE_MINIKUBE:31000`
-   - Hacer clic en "Connect"
-   - ¡Ya tienes acceso a Kali Linux!
+2. **Access Kali Linux**:
+   - Open web browser
+   - Navigate to `http://MINIKUBE_IP:31000`
+   - Click "Connect"
+   - You now have access to Kali Linux!
 
-3. **Verificar Metasploitable**:
-   - En el navegador: `http://IP_DE_MINIKUBE:31002`
-   - Deberías ver la página web de Metasploitable
+3. **Verify Metasploitable**:
+   - In browser: `http://MINIKUBE_IP:31002`
+   - You should see the Metasploitable web page
 
 ## Ejemplos de Uso Educativo
 
