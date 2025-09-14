@@ -1,119 +1,119 @@
-# VMS Cyber Master - Laboratorio de Ciberseguridad Educativo
+# VMS Cyber Master - Educational Cybersecurity Laboratory
 
-## ¿Qué es este proyecto? (Explicación para principiantes)
+## What is this project? (Beginner's Guide)
 
-Imagina que quieres aprender sobre ciberseguridad, pero no sabes por dónde empezar. Este proyecto es como un gimnasio virtual donde puedes practicar técnicas de seguridad informática de manera segura y legal.
+Imagine you want to learn cybersecurity but don't know where to start. This project is like a virtual gym where you can safely and legally practice computer security techniques.
 
-**VMS Cyber Master** es un laboratorio virtual completo que simula un entorno real de ciberseguridad. Piensa en él como un videojuego educativo donde tienes:
+**VMS Cyber Master** is a complete virtual laboratory that simulates a real cybersecurity environment. Think of it as an educational video game where you have:
 
-1. **Una máquina atacante** (Kali Linux) - Es como tu "personaje principal" equipado con todas las herramientas de hacking ético
-2. **Una máquina objetivo** (Metasploitable2) - Es como el "enemigo" que has creado intencionalmente para ser vulnerable y poder practicar sin dañar sistemas reales
-3. **Un orquestador** (Kubernetes) - Es como el "motor del juego" que gestiona y controla todo el entorno
+1. **An attacking machine** (Kali Linux) - Like your "main character" equipped with all ethical hacking tools
+2. **A target machine** (Metasploitable2) - Like the "enemy" you've intentionally created to be vulnerable so you can practice without damaging real systems
+3. **An orchestrator** (Kubernetes) - Like the "game engine" that manages and controls the entire environment
 
-**⚠️ AVISO IMPORTANTE**: Este entorno está diseñado ÚNICAMENTE para fines educativos y pruebas de penetración autorizadas. Solo usa estas herramientas en entornos controlados con permiso explícito. El acceso no autorizado a sistemas informáticos es ilegal.
+**⚠️ IMPORTANT WARNING**: This environment is designed ONLY for educational purposes and authorized penetration testing. Only use these tools in controlled environments with explicit permission. Unauthorized access to computer systems is illegal.
 
-## ¿Qué tecnologías necesitas conocer? (Conceptos fundamentales)
+## What technologies do you need to know? (Fundamental concepts)
 
-Antes de comenzar, necesitas entender algunos conceptos básicos:
+Before starting, you need to understand some basic concepts:
 
-### 1. ¿Qué es un Contenedor (Docker)?
+### 1. What is a Container (Docker)?
 
-Un **contenedor** es como una caja virtual que contiene todo lo necesario para ejecutar una aplicación:
-- El sistema operativo base
-- Las herramientas y programas necesarios
-- Las configuraciones específicas
-- Las dependencias y librerías
+A **container** is like a virtual box that contains everything needed to run an application:
+- The base operating system
+- Necessary tools and programs
+- Specific configurations
+- Dependencies and libraries
 
-**Docker** es la tecnología que crea y gestiona estos contenedores. Piensa en Docker como una fábrica que produce estas "cajas virtuales" de forma consistente y reproducible.
+**Docker** is the technology that creates and manages these containers. Think of Docker as a factory that produces these "virtual boxes" consistently and reproducibly.
 
-**Ventajas de usar contenedores:**
-- **Portabilidad**: Funciona igual en cualquier máquina
-- **Aislamiento**: No afecta al sistema principal
-- **Reproducibilidad**: Siempre obtienes el mismo resultado
-- **Eficiencia**: Usa menos recursos que una máquina virtual completa
+**Advantages of using containers:**
+- **Portability**: Works the same on any machine
+- **Isolation**: Doesn't affect the main system
+- **Reproducibility**: Always get the same result
+- **Efficiency**: Uses fewer resources than a complete virtual machine
 
-### 2. ¿Qué es Kubernetes?
+### 2. What is Kubernetes?
 
-**Kubernetes** (también llamado K8s) es como un director de orquesta para contenedores. Si Docker crea las "cajas virtuales", Kubernetes las organiza, gestiona y coordina.
+**Kubernetes** (also called K8s) is like an orchestra conductor for containers. If Docker creates the "virtual boxes", Kubernetes organizes, manages, and coordinates them.
 
-**¿Qué hace Kubernetes en este proyecto?**
-- **Despliegue**: Lanza los contenedores en el momento adecuado
-- **Escalado**: Puede crear más copias si es necesario
-- **Networking**: Conecta los contenedores entre sí
-- **Monitorización**: Vigila que todo funcione correctamente
-- **Recuperación**: Reinicia contenedores si fallan
+**What does Kubernetes do in this project?**
+- **Deployment**: Launches containers at the right time
+- **Scaling**: Can create more copies if needed
+- **Networking**: Connects containers to each other
+- **Monitoring**: Watches that everything works correctly
+- **Recovery**: Restarts containers if they fail
 
-### 3. ¿Qué es VNC y noVNC?
+### 3. What is VNC and noVNC?
 
-**VNC (Virtual Network Computing)** es una tecnología que te permite controlar remotamente una computadora con interfaz gráfica, como si estuvieras sentado frente a ella.
+**VNC (Virtual Network Computing)** is a technology that allows you to remotely control a computer with a graphical interface, as if you were sitting in front of it.
 
-**noVNC** es una versión web de VNC que funciona directamente en tu navegador web, sin necesidad de instalar software adicional.
+**noVNC** is a web version of VNC that works directly in your web browser, without needing to install additional software.
 
-**¿Por qué es importante?**
-En este laboratorio, Kali Linux ejecuta un entorno de escritorio completo (XFCE4), pero está dentro de un contenedor sin pantalla física. VNC/noVNC nos permite "ver" y controlar este escritorio de forma remota.
+**Why is this important?**
+In this laboratory, Kali Linux runs a complete desktop environment (XFCE4), but it's inside a container without a physical display. VNC/noVNC allows us to "see" and control this desktop remotely.
 
-### 4. ¿Qué es Kali Linux?
+### 4. What is Kali Linux?
 
-**Kali Linux** es una distribución de Linux especializada en ciberseguridad y hacking ético. Viene preinstalada con cientos de herramientas para:
-- Análisis de vulnerabilidades
-- Pruebas de penetración
-- Análisis forense digital
-- Ingeniería inversa
+**Kali Linux** is a Linux distribution specialized in cybersecurity and ethical hacking. It comes pre-installed with hundreds of tools for:
+- Vulnerability analysis
+- Penetration testing
+- Digital forensics
+- Reverse engineering
 
-**¿Por qué usamos Kali Linux?**
-Es la herramienta estándar en la industria para profesionales de ciberseguridad y es completamente gratuita.
+**Why do we use Kali Linux?**
+It's the industry standard tool for cybersecurity professionals and is completely free.
 
-### 5. ¿Qué es Metasploitable?
+### 5. What is Metasploitable?
 
-**Metasploitable** es una máquina virtual intencionalmente vulnerable creada con fines educativos. Es como un "muñeco de práctica" para hackers éticos.
+**Metasploitable** is an intentionally vulnerable virtual machine created for educational purposes. It's like a "practice dummy" for ethical hackers.
 
-**Características importantes:**
-- Contiene vulnerabilidades conocidas y documentadas
-- Incluye servicios mal configurados intencionalmente
-- Usuarios con contraseñas débiles
-- Servicios obsoletos con fallos de seguridad
+**Important characteristics:**
+- Contains known and documented vulnerabilities
+- Includes intentionally misconfigured services
+- Users with weak passwords
+- Outdated services with security flaws
 
-## Arquitectura del Sistema (Cómo funciona todo junto)
+## System Architecture (How everything works together)
 
-### Visión General del Flujo de Trabajo
+### Workflow Overview
 
 ```
-[Tu Computadora] 
-       ↓ (navegador web)
+[Your Computer] 
+       ↓ (web browser)
 [Kubernetes Cluster] 
        ↓
 [Namespace: cyber-lab] 
     ↙         ↘
-[Contenedor Kali]  [Contenedor Metasploitable]
-(Máquina Atacante)    (Máquina Víctima)
+[Kali Container]  [Metasploitable Container]
+(Attacking Machine)    (Victim Machine)
        ↓                    ↓
-[noVNC: puerto 31000]  [Servidor Web: puerto 31002]
-[VNC: puerto 31001]    [SSH: puerto 31003]
+[noVNC: port 31000]  [Web Server: port 31002]
+[VNC: port 31001]    [SSH: port 31003]
 ```
 
-### ¿Cómo interactúan los componentes?
+### How do the components interact?
 
-1. **Tu navegador** se conecta al puerto 31000 para acceder a Kali Linux
-2. **Kali Linux** ejecuta herramientas de hacking contra Metasploitable
-3. **Metasploitable** responde a los ataques de manera predecible (está diseñado para ser vulnerable)
-4. **Kubernetes** mantiene ambos contenedores funcionando y los conecta entre sí
+1. **Your browser** connects to port 31000 to access Kali Linux
+2. **Kali Linux** runs hacking tools against Metasploitable
+3. **Metasploitable** responds to attacks predictably (it's designed to be vulnerable)
+4. **Kubernetes** keeps both containers running and connects them to each other
 
-## Estructura de Archivos Detallada (Qué hace cada archivo)
+## Detailed File Structure (What each file does)
 
-### Archivos del Directorio Principal
+### Main Directory Files
 
-#### 1. `Dockerfile` - Constructor de la Máquina Atacante
+#### 1. `Dockerfile` - Attacking Machine Builder
 
-**¿Qué es un Dockerfile?**
-Un Dockerfile es como una receta de cocina que le dice a Docker exactamente cómo construir un contenedor. Cada línea es una instrucción específica.
+**What is a Dockerfile?**
+A Dockerfile is like a cooking recipe that tells Docker exactly how to build a container. Each line is a specific instruction.
 
-**Análisis línea por línea:**
+**Line-by-line analysis:**
 
 ```dockerfile
 FROM kalilinux/kali-rolling:latest
 ```
-- **FROM**: Esta línea dice "empezar con la imagen oficial de Kali Linux más reciente"
-- Es como decir "toma una instalación limpia de Kali Linux como base"
+- **FROM**: This line says "start with the latest official Kali Linux image"
+- It's like saying "take a clean installation of Kali Linux as the base"
 
 ```dockerfile
 RUN apt-get update && \
@@ -126,58 +126,58 @@ RUN apt-get update && \
         python3 \
         ...
 ```
-- **RUN**: Ejecuta comandos durante la construcción del contenedor
-- **apt-get update**: Actualiza la lista de paquetes disponibles
-- **DEBIAN_FRONTEND=noninteractive**: Evita que el sistema pregunte cosas durante la instalación
-- **xfce4**: Instala el entorno de escritorio XFCE4 (la interfaz gráfica)
-- **x11vnc**: Instala el servidor VNC para acceso remoto
-- **xvfb**: Instala un servidor X virtual (pantalla virtual)
-- **metasploit-framework**: Instala el framework de explotación más usado en el mundo
+- **RUN**: Executes commands during container build
+- **apt-get update**: Updates the list of available packages
+- **DEBIAN_FRONTEND=noninteractive**: Prevents the system from asking questions during installation
+- **xfce4**: Installs the XFCE4 desktop environment (the graphical interface)
+- **x11vnc**: Installs the VNC server for remote access
+- **xvfb**: Installs a virtual X server (virtual display)
+- **metasploit-framework**: Installs the most used exploitation framework in the world
 
 ```dockerfile
 RUN mkdir -p /root/.vnc /root/.config && \
     printf "kali12345\nkali12345\n\n" | vncpasswd && \
     chmod 600 /root/.vnc/passwd
 ```
-- **mkdir -p**: Crea directorios necesarios para VNC
-- **printf "kali12345\nkali12345\n\n" | vncpasswd**: Establece la contraseña de VNC automáticamente
-- **chmod 600**: Establece permisos de seguridad para el archivo de contraseña
+- **mkdir -p**: Creates necessary directories for VNC
+- **printf "kali12345\nkali12345\n\n" | vncpasswd**: Sets the VNC password automatically
+- **chmod 600**: Sets security permissions for the password file
 
 ```dockerfile
 COPY startup.sh /root/startup.sh
 RUN chmod +x /root/startup.sh
 ```
-- **COPY**: Copia el script de inicio desde tu computadora al contenedor
-- **chmod +x**: Hace que el script sea ejecutable
+- **COPY**: Copies the startup script from your computer to the container
+- **chmod +x**: Makes the script executable
 
 ```dockerfile
 EXPOSE 5901 6080
 ```
-- **EXPOSE**: Informa que el contenedor usará estos puertos
-- **5901**: Puerto para VNC directo
-- **6080**: Puerto para noVNC (acceso web)
+- **EXPOSE**: Informs that the container will use these ports
+- **5901**: Port for direct VNC
+- **6080**: Port for noVNC (web access)
 
 ```dockerfile
 CMD ["/root/startup.sh"]
 ```
-- **CMD**: Define qué comando ejecutar cuando se inicie el contenedor
+- **CMD**: Defines what command to execute when the container starts
 
-#### 2. `startup.sh` - El Cerebro del Sistema de Kali
+#### 2. `startup.sh` - The Kali System Brain
 
-Este script es fundamental porque orquesta todo el proceso de inicio del entorno gráfico dentro del contenedor.
+This script is fundamental because it orchestrates the entire startup process of the graphical environment inside the container.
 
-**¿Por qué necesitamos este script?**
-Los contenedores Docker están diseñados para ejecutar una sola aplicación, pero nosotros necesitamos ejecutar múltiples servicios (servidor X, VNC, noVNC, entorno de escritorio). Este script los coordina todos.
+**Why do we need this script?**
+Docker containers are designed to run a single application, but we need to run multiple services (X server, VNC, noVNC, desktop environment). This script coordinates them all.
 
-**Análisis detallado:**
+**Detailed analysis:**
 
 ```bash
 #!/bin/bash
-set -e  # Detener en caso de error
+set -e  # Stop on error
 exec 1> >(tee -a /var/log/startup.log) 2>&1  # Logging
 ```
-- **set -e**: Si cualquier comando falla, el script se detiene inmediatamente
-- **exec 1> >(tee -a /var/log/startup.log) 2>&1**: Registra toda la salida en un archivo de log
+- **set -e**: If any command fails, the script stops immediately
+- **exec 1> >(tee -a /var/log/startup.log) 2>&1**: Logs all output to a log file
 
 ```bash
 export DISPLAY=:1
@@ -185,76 +185,76 @@ export HOME=/root
 export XDG_RUNTIME_DIR=/tmp/xdg
 export XAUTHORITY=/root/.Xauthority
 ```
-- **DISPLAY=:1**: Le dice a las aplicaciones gráficas que usen la pantalla virtual número 1
-- Estas variables de entorno son necesarias para que el sistema gráfico funcione correctamente
+- **DISPLAY=:1**: Tells graphical applications to use virtual display number 1
+- These environment variables are necessary for the graphical system to work correctly
 
 ```bash
 mkdir -p /tmp/xdg /tmp/.X11-unix
 chmod 700 /tmp/xdg
 chmod 1777 /tmp/.X11-unix
 ```
-- Crea directorios temporales necesarios para el sistema X11
-- Establece permisos específicos para la seguridad
+- Creates temporary directories needed for the X11 system
+- Sets specific permissions for security
 
 ```bash
 pkill -9 -f Xvfb || true
 pkill -9 -f x11vnc || true
 pkill -9 -f xfce4 || true
 ```
-- **pkill -9**: Mata cualquier proceso previo que pueda estar ejecutándose
-- **|| true**: Evita errores si no hay procesos que matar
+- **pkill -9**: Kills any previous processes that might be running
+- **|| true**: Prevents errors if there are no processes to kill
 
 ```bash
 Xvfb :1 -screen 0 1920x1080x24 &
 ```
-- **Xvfb**: Inicia el servidor X virtual (pantalla virtual)
-- **:1**: Usa el display número 1
-- **-screen 0 1920x1080x24**: Crea una pantalla virtual de 1920x1080 píxeles con 24 bits de color
-- **&**: Ejecuta en segundo plano
+- **Xvfb**: Starts the virtual X server (virtual display)
+- **:1**: Uses display number 1
+- **-screen 0 1920x1080x24**: Creates a virtual screen of 1920x1080 pixels with 24-bit color
+- **&**: Runs in the background
 
 ```bash
 startxfce4 &
 ```
-- Inicia el entorno de escritorio XFCE4 en segundo plano
+- Starts the XFCE4 desktop environment in the background
 
 ```bash
 x11vnc -display :1 -forever -shared -rfbport 5901 -rfbauth /root/.vnc/passwd -noxdamage -noxfixes -noxrecord &
 ```
-- **x11vnc**: Inicia el servidor VNC
-- **-display :1**: Se conecta al display virtual número 1
-- **-forever**: Mantiene el servidor VNC ejecutándose indefinidamente
-- **-shared**: Permite múltiples conexiones simultáneas
-- **-rfbport 5901**: Usa el puerto 5901 para VNC
-- **-rfbauth**: Usa el archivo de contraseña que creamos antes
+- **x11vnc**: Starts the VNC server
+- **-display :1**: Connects to virtual display number 1
+- **-forever**: Keeps the VNC server running indefinitely
+- **-shared**: Allows multiple simultaneous connections
+- **-rfbport 5901**: Uses port 5901 for VNC
+- **-rfbauth**: Uses the password file we created earlier
 
 ```bash
 cd /opt/noVNC
 ./utils/novnc_proxy --vnc 0.0.0.0:5901 --listen 0.0.0.0:6080 &
 ```
-- Inicia noVNC, que actúa como un proxy web para VNC
-- **--vnc 0.0.0.0:5901**: Se conecta al servidor VNC local
-- **--listen 0.0.0.0:6080**: Escucha en el puerto 6080 para conexiones web
+- Starts noVNC, which acts as a web proxy for VNC
+- **--vnc 0.0.0.0:5901**: Connects to the local VNC server
+- **--listen 0.0.0.0:6080**: Listens on port 6080 for web connections
 
-### Directorio `DOckerFile-metaex/` - La Máquina Víctima
+### Directory `DOckerFile-metaex/` - The Victim Machine
 
-#### 3. `DOckerFile-metaex/Dockerfile` - Constructor de la Máquina Vulnerable
+#### 3. `DOckerFile-metaex/Dockerfile` - Vulnerable Machine Builder
 
-Este Dockerfile crea una máquina intencionalmente insegura para practicar.
+This Dockerfile creates an intentionally insecure machine for practice.
 
-**Filosofía de diseño:**
-A diferencia de Kali (que debe ser seguro y robusto), Metasploitable debe ser vulnerable y fácil de explotar.
+**Design philosophy:**
+Unlike Kali (which must be secure and robust), Metasploitable must be vulnerable and easy to exploit.
 
-**Análisis detallado:**
+**Detailed analysis:**
 
 ```dockerfile
 FROM ubuntu:20.04
 ```
-- Usa Ubuntu 20.04 como base (más antiguo = más vulnerable)
+- Uses Ubuntu 20.04 as base (older = more vulnerable)
 
 ```dockerfile
 ENV DEBIAN_FRONTEND=noninteractive
 ```
-- Evita preguntas durante la instalación automatizada
+- Prevents questions during automated installation
 
 ```dockerfile
 RUN apt-get update && \
@@ -264,34 +264,34 @@ RUN apt-get update && \
         mysql-server \
         ...
 ```
-- **openssh-server**: Servidor SSH para acceso remoto
-- **apache2**: Servidor web Apache
-- **mysql-server**: Base de datos MySQL
-- **vsftpd**: Servidor FTP vulnerable
-- **samba**: Servicios de archivos compartidos
-- **bind9**: Servidor DNS
-- **telnet**: Protocolo inseguro de acceso remoto
-- **xinetd**: Súper-servidor que gestiona otros servicios
+- **openssh-server**: SSH server for remote access
+- **apache2**: Apache web server
+- **mysql-server**: MySQL database
+- **vsftpd**: Vulnerable FTP server
+- **samba**: File sharing services
+- **bind9**: DNS server
+- **telnet**: Insecure remote access protocol
+- **xinetd**: Super-server that manages other services
 
 ```dockerfile
 RUN mkdir /var/run/sshd && \
     echo 'root:toor' | chpasswd && \
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 ```
-- **mkdir /var/run/sshd**: Crea directorio necesario para SSH
-- **echo 'root:toor' | chpasswd**: Establece una contraseña DÉBIL para root
-- **sed -i 's/...': Permite login directo como root via SSH (INSEGURO)
+- **mkdir /var/run/sshd**: Creates necessary directory for SSH
+- **echo 'root:toor' | chpasswd**: Sets a WEAK password for root
+- **sed -i 's/...'**: Allows direct root login via SSH (INSECURE)
 
 ```dockerfile
 RUN useradd -ms /bin/bash msfadmin && \
     echo 'msfadmin:msfadmin' | chpasswd
 ```
-- Crea un usuario con usuario y contraseña idénticos (INSEGURO)
+- Creates a user with identical username and password (INSECURE)
 
 ```dockerfile
 EXPOSE 21 22 23 25 53 80 139 445 3306 5432 8009 8180
 ```
-- Expone múltiples puertos para diferentes servicios vulnerables
+- Exposes multiple ports for different vulnerable services
 
 #### 4. `DOckerFile-metaex/start_services.sh` - Iniciador de Servicios Vulnerables
 
