@@ -1,119 +1,119 @@
-# VMS Cyber Master - Laboratorio de Ciberseguridad Educativo
+# VMS Cyber Master - Educational Cybersecurity Laboratory
 
-## ¿Qué es este proyecto? (Explicación para principiantes)
+## What is this project? (Beginner's Guide)
 
-Imagina que quieres aprender sobre ciberseguridad, pero no sabes por dónde empezar. Este proyecto es como un gimnasio virtual donde puedes practicar técnicas de seguridad informática de manera segura y legal.
+Imagine you want to learn cybersecurity but don't know where to start. This project is like a virtual gym where you can safely and legally practice computer security techniques.
 
-**VMS Cyber Master** es un laboratorio virtual completo que simula un entorno real de ciberseguridad. Piensa en él como un videojuego educativo donde tienes:
+**VMS Cyber Master** is a complete virtual laboratory that simulates a real cybersecurity environment. Think of it as an educational video game where you have:
 
-1. **Una máquina atacante** (Kali Linux) - Es como tu "personaje principal" equipado con todas las herramientas de hacking ético
-2. **Una máquina objetivo** (Metasploitable2) - Es como el "enemigo" que has creado intencionalmente para ser vulnerable y poder practicar sin dañar sistemas reales
-3. **Un orquestador** (Kubernetes) - Es como el "motor del juego" que gestiona y controla todo el entorno
+1. **An attacking machine** (Kali Linux) - Like your "main character" equipped with all ethical hacking tools
+2. **A target machine** (Metasploitable2) - Like the "enemy" you've intentionally created to be vulnerable so you can practice without damaging real systems
+3. **An orchestrator** (Kubernetes) - Like the "game engine" that manages and controls the entire environment
 
-**⚠️ AVISO IMPORTANTE**: Este entorno está diseñado ÚNICAMENTE para fines educativos y pruebas de penetración autorizadas. Solo usa estas herramientas en entornos controlados con permiso explícito. El acceso no autorizado a sistemas informáticos es ilegal.
+**⚠️ IMPORTANT WARNING**: This environment is designed ONLY for educational purposes and authorized penetration testing. Only use these tools in controlled environments with explicit permission. Unauthorized access to computer systems is illegal.
 
-## ¿Qué tecnologías necesitas conocer? (Conceptos fundamentales)
+## What technologies do you need to know? (Fundamental concepts)
 
-Antes de comenzar, necesitas entender algunos conceptos básicos:
+Before starting, you need to understand some basic concepts:
 
-### 1. ¿Qué es un Contenedor (Docker)?
+### 1. What is a Container (Docker)?
 
-Un **contenedor** es como una caja virtual que contiene todo lo necesario para ejecutar una aplicación:
-- El sistema operativo base
-- Las herramientas y programas necesarios
-- Las configuraciones específicas
-- Las dependencias y librerías
+A **container** is like a virtual box that contains everything needed to run an application:
+- The base operating system
+- Necessary tools and programs
+- Specific configurations
+- Dependencies and libraries
 
-**Docker** es la tecnología que crea y gestiona estos contenedores. Piensa en Docker como una fábrica que produce estas "cajas virtuales" de forma consistente y reproducible.
+**Docker** is the technology that creates and manages these containers. Think of Docker as a factory that produces these "virtual boxes" consistently and reproducibly.
 
-**Ventajas de usar contenedores:**
-- **Portabilidad**: Funciona igual en cualquier máquina
-- **Aislamiento**: No afecta al sistema principal
-- **Reproducibilidad**: Siempre obtienes el mismo resultado
-- **Eficiencia**: Usa menos recursos que una máquina virtual completa
+**Advantages of using containers:**
+- **Portability**: Works the same on any machine
+- **Isolation**: Doesn't affect the main system
+- **Reproducibility**: Always get the same result
+- **Efficiency**: Uses fewer resources than a complete virtual machine
 
-### 2. ¿Qué es Kubernetes?
+### 2. What is Kubernetes?
 
-**Kubernetes** (también llamado K8s) es como un director de orquesta para contenedores. Si Docker crea las "cajas virtuales", Kubernetes las organiza, gestiona y coordina.
+**Kubernetes** (also called K8s) is like an orchestra conductor for containers. If Docker creates the "virtual boxes", Kubernetes organizes, manages, and coordinates them.
 
-**¿Qué hace Kubernetes en este proyecto?**
-- **Despliegue**: Lanza los contenedores en el momento adecuado
-- **Escalado**: Puede crear más copias si es necesario
-- **Networking**: Conecta los contenedores entre sí
-- **Monitorización**: Vigila que todo funcione correctamente
-- **Recuperación**: Reinicia contenedores si fallan
+**What does Kubernetes do in this project?**
+- **Deployment**: Launches containers at the right time
+- **Scaling**: Can create more copies if needed
+- **Networking**: Connects containers to each other
+- **Monitoring**: Watches that everything works correctly
+- **Recovery**: Restarts containers if they fail
 
-### 3. ¿Qué es VNC y noVNC?
+### 3. What is VNC and noVNC?
 
-**VNC (Virtual Network Computing)** es una tecnología que te permite controlar remotamente una computadora con interfaz gráfica, como si estuvieras sentado frente a ella.
+**VNC (Virtual Network Computing)** is a technology that allows you to remotely control a computer with a graphical interface, as if you were sitting in front of it.
 
-**noVNC** es una versión web de VNC que funciona directamente en tu navegador web, sin necesidad de instalar software adicional.
+**noVNC** is a web version of VNC that works directly in your web browser, without needing to install additional software.
 
-**¿Por qué es importante?**
-En este laboratorio, Kali Linux ejecuta un entorno de escritorio completo (XFCE4), pero está dentro de un contenedor sin pantalla física. VNC/noVNC nos permite "ver" y controlar este escritorio de forma remota.
+**Why is this important?**
+In this laboratory, Kali Linux runs a complete desktop environment (XFCE4), but it's inside a container without a physical display. VNC/noVNC allows us to "see" and control this desktop remotely.
 
-### 4. ¿Qué es Kali Linux?
+### 4. What is Kali Linux?
 
-**Kali Linux** es una distribución de Linux especializada en ciberseguridad y hacking ético. Viene preinstalada con cientos de herramientas para:
-- Análisis de vulnerabilidades
-- Pruebas de penetración
-- Análisis forense digital
-- Ingeniería inversa
+**Kali Linux** is a Linux distribution specialized in cybersecurity and ethical hacking. It comes pre-installed with hundreds of tools for:
+- Vulnerability analysis
+- Penetration testing
+- Digital forensics
+- Reverse engineering
 
-**¿Por qué usamos Kali Linux?**
-Es la herramienta estándar en la industria para profesionales de ciberseguridad y es completamente gratuita.
+**Why do we use Kali Linux?**
+It's the industry standard tool for cybersecurity professionals and is completely free.
 
-### 5. ¿Qué es Metasploitable?
+### 5. What is Metasploitable?
 
-**Metasploitable** es una máquina virtual intencionalmente vulnerable creada con fines educativos. Es como un "muñeco de práctica" para hackers éticos.
+**Metasploitable** is an intentionally vulnerable virtual machine created for educational purposes. It's like a "practice dummy" for ethical hackers.
 
-**Características importantes:**
-- Contiene vulnerabilidades conocidas y documentadas
-- Incluye servicios mal configurados intencionalmente
-- Usuarios con contraseñas débiles
-- Servicios obsoletos con fallos de seguridad
+**Important characteristics:**
+- Contains known and documented vulnerabilities
+- Includes intentionally misconfigured services
+- Users with weak passwords
+- Outdated services with security flaws
 
-## Arquitectura del Sistema (Cómo funciona todo junto)
+## System Architecture (How everything works together)
 
-### Visión General del Flujo de Trabajo
+### Workflow Overview
 
 ```
-[Tu Computadora] 
-       ↓ (navegador web)
+[Your Computer] 
+       ↓ (web browser)
 [Kubernetes Cluster] 
        ↓
 [Namespace: cyber-lab] 
     ↙         ↘
-[Contenedor Kali]  [Contenedor Metasploitable]
-(Máquina Atacante)    (Máquina Víctima)
+[Kali Container]  [Metasploitable Container]
+(Attacking Machine)    (Victim Machine)
        ↓                    ↓
-[noVNC: puerto 31000]  [Servidor Web: puerto 31002]
-[VNC: puerto 31001]    [SSH: puerto 31003]
+[noVNC: port 31000]  [Web Server: port 31002]
+[VNC: port 31001]    [SSH: port 31003]
 ```
 
-### ¿Cómo interactúan los componentes?
+### How do the components interact?
 
-1. **Tu navegador** se conecta al puerto 31000 para acceder a Kali Linux
-2. **Kali Linux** ejecuta herramientas de hacking contra Metasploitable
-3. **Metasploitable** responde a los ataques de manera predecible (está diseñado para ser vulnerable)
-4. **Kubernetes** mantiene ambos contenedores funcionando y los conecta entre sí
+1. **Your browser** connects to port 31000 to access Kali Linux
+2. **Kali Linux** runs hacking tools against Metasploitable
+3. **Metasploitable** responds to attacks predictably (it's designed to be vulnerable)
+4. **Kubernetes** keeps both containers running and connects them to each other
 
-## Estructura de Archivos Detallada (Qué hace cada archivo)
+## Detailed File Structure (What each file does)
 
-### Archivos del Directorio Principal
+### Main Directory Files
 
-#### 1. `Dockerfile` - Constructor de la Máquina Atacante
+#### 1. `Dockerfile` - Attacking Machine Builder
 
-**¿Qué es un Dockerfile?**
-Un Dockerfile es como una receta de cocina que le dice a Docker exactamente cómo construir un contenedor. Cada línea es una instrucción específica.
+**What is a Dockerfile?**
+A Dockerfile is like a cooking recipe that tells Docker exactly how to build a container. Each line is a specific instruction.
 
-**Análisis línea por línea:**
+**Line-by-line analysis:**
 
 ```dockerfile
 FROM kalilinux/kali-rolling:latest
 ```
-- **FROM**: Esta línea dice "empezar con la imagen oficial de Kali Linux más reciente"
-- Es como decir "toma una instalación limpia de Kali Linux como base"
+- **FROM**: This line says "start with the latest official Kali Linux image"
+- It's like saying "take a clean installation of Kali Linux as the base"
 
 ```dockerfile
 RUN apt-get update && \
@@ -126,58 +126,58 @@ RUN apt-get update && \
         python3 \
         ...
 ```
-- **RUN**: Ejecuta comandos durante la construcción del contenedor
-- **apt-get update**: Actualiza la lista de paquetes disponibles
-- **DEBIAN_FRONTEND=noninteractive**: Evita que el sistema pregunte cosas durante la instalación
-- **xfce4**: Instala el entorno de escritorio XFCE4 (la interfaz gráfica)
-- **x11vnc**: Instala el servidor VNC para acceso remoto
-- **xvfb**: Instala un servidor X virtual (pantalla virtual)
-- **metasploit-framework**: Instala el framework de explotación más usado en el mundo
+- **RUN**: Executes commands during container build
+- **apt-get update**: Updates the list of available packages
+- **DEBIAN_FRONTEND=noninteractive**: Prevents the system from asking questions during installation
+- **xfce4**: Installs the XFCE4 desktop environment (the graphical interface)
+- **x11vnc**: Installs the VNC server for remote access
+- **xvfb**: Installs a virtual X server (virtual display)
+- **metasploit-framework**: Installs the most used exploitation framework in the world
 
 ```dockerfile
 RUN mkdir -p /root/.vnc /root/.config && \
     printf "kali12345\nkali12345\n\n" | vncpasswd && \
     chmod 600 /root/.vnc/passwd
 ```
-- **mkdir -p**: Crea directorios necesarios para VNC
-- **printf "kali12345\nkali12345\n\n" | vncpasswd**: Establece la contraseña de VNC automáticamente
-- **chmod 600**: Establece permisos de seguridad para el archivo de contraseña
+- **mkdir -p**: Creates necessary directories for VNC
+- **printf "kali12345\nkali12345\n\n" | vncpasswd**: Sets the VNC password automatically
+- **chmod 600**: Sets security permissions for the password file
 
 ```dockerfile
 COPY startup.sh /root/startup.sh
 RUN chmod +x /root/startup.sh
 ```
-- **COPY**: Copia el script de inicio desde tu computadora al contenedor
-- **chmod +x**: Hace que el script sea ejecutable
+- **COPY**: Copies the startup script from your computer to the container
+- **chmod +x**: Makes the script executable
 
 ```dockerfile
 EXPOSE 5901 6080
 ```
-- **EXPOSE**: Informa que el contenedor usará estos puertos
-- **5901**: Puerto para VNC directo
-- **6080**: Puerto para noVNC (acceso web)
+- **EXPOSE**: Informs that the container will use these ports
+- **5901**: Port for direct VNC
+- **6080**: Port for noVNC (web access)
 
 ```dockerfile
 CMD ["/root/startup.sh"]
 ```
-- **CMD**: Define qué comando ejecutar cuando se inicie el contenedor
+- **CMD**: Defines what command to execute when the container starts
 
-#### 2. `startup.sh` - El Cerebro del Sistema de Kali
+#### 2. `startup.sh` - The Kali System Brain
 
-Este script es fundamental porque orquesta todo el proceso de inicio del entorno gráfico dentro del contenedor.
+This script is fundamental because it orchestrates the entire startup process of the graphical environment inside the container.
 
-**¿Por qué necesitamos este script?**
-Los contenedores Docker están diseñados para ejecutar una sola aplicación, pero nosotros necesitamos ejecutar múltiples servicios (servidor X, VNC, noVNC, entorno de escritorio). Este script los coordina todos.
+**Why do we need this script?**
+Docker containers are designed to run a single application, but we need to run multiple services (X server, VNC, noVNC, desktop environment). This script coordinates them all.
 
-**Análisis detallado:**
+**Detailed analysis:**
 
 ```bash
 #!/bin/bash
-set -e  # Detener en caso de error
+set -e  # Stop on error
 exec 1> >(tee -a /var/log/startup.log) 2>&1  # Logging
 ```
-- **set -e**: Si cualquier comando falla, el script se detiene inmediatamente
-- **exec 1> >(tee -a /var/log/startup.log) 2>&1**: Registra toda la salida en un archivo de log
+- **set -e**: If any command fails, the script stops immediately
+- **exec 1> >(tee -a /var/log/startup.log) 2>&1**: Logs all output to a log file
 
 ```bash
 export DISPLAY=:1
@@ -185,76 +185,76 @@ export HOME=/root
 export XDG_RUNTIME_DIR=/tmp/xdg
 export XAUTHORITY=/root/.Xauthority
 ```
-- **DISPLAY=:1**: Le dice a las aplicaciones gráficas que usen la pantalla virtual número 1
-- Estas variables de entorno son necesarias para que el sistema gráfico funcione correctamente
+- **DISPLAY=:1**: Tells graphical applications to use virtual display number 1
+- These environment variables are necessary for the graphical system to work correctly
 
 ```bash
 mkdir -p /tmp/xdg /tmp/.X11-unix
 chmod 700 /tmp/xdg
 chmod 1777 /tmp/.X11-unix
 ```
-- Crea directorios temporales necesarios para el sistema X11
-- Establece permisos específicos para la seguridad
+- Creates temporary directories needed for the X11 system
+- Sets specific permissions for security
 
 ```bash
 pkill -9 -f Xvfb || true
 pkill -9 -f x11vnc || true
 pkill -9 -f xfce4 || true
 ```
-- **pkill -9**: Mata cualquier proceso previo que pueda estar ejecutándose
-- **|| true**: Evita errores si no hay procesos que matar
+- **pkill -9**: Kills any previous processes that might be running
+- **|| true**: Prevents errors if there are no processes to kill
 
 ```bash
 Xvfb :1 -screen 0 1920x1080x24 &
 ```
-- **Xvfb**: Inicia el servidor X virtual (pantalla virtual)
-- **:1**: Usa el display número 1
-- **-screen 0 1920x1080x24**: Crea una pantalla virtual de 1920x1080 píxeles con 24 bits de color
-- **&**: Ejecuta en segundo plano
+- **Xvfb**: Starts the virtual X server (virtual display)
+- **:1**: Uses display number 1
+- **-screen 0 1920x1080x24**: Creates a virtual screen of 1920x1080 pixels with 24-bit color
+- **&**: Runs in the background
 
 ```bash
 startxfce4 &
 ```
-- Inicia el entorno de escritorio XFCE4 en segundo plano
+- Starts the XFCE4 desktop environment in the background
 
 ```bash
 x11vnc -display :1 -forever -shared -rfbport 5901 -rfbauth /root/.vnc/passwd -noxdamage -noxfixes -noxrecord &
 ```
-- **x11vnc**: Inicia el servidor VNC
-- **-display :1**: Se conecta al display virtual número 1
-- **-forever**: Mantiene el servidor VNC ejecutándose indefinidamente
-- **-shared**: Permite múltiples conexiones simultáneas
-- **-rfbport 5901**: Usa el puerto 5901 para VNC
-- **-rfbauth**: Usa el archivo de contraseña que creamos antes
+- **x11vnc**: Starts the VNC server
+- **-display :1**: Connects to virtual display number 1
+- **-forever**: Keeps the VNC server running indefinitely
+- **-shared**: Allows multiple simultaneous connections
+- **-rfbport 5901**: Uses port 5901 for VNC
+- **-rfbauth**: Uses the password file we created earlier
 
 ```bash
 cd /opt/noVNC
 ./utils/novnc_proxy --vnc 0.0.0.0:5901 --listen 0.0.0.0:6080 &
 ```
-- Inicia noVNC, que actúa como un proxy web para VNC
-- **--vnc 0.0.0.0:5901**: Se conecta al servidor VNC local
-- **--listen 0.0.0.0:6080**: Escucha en el puerto 6080 para conexiones web
+- Starts noVNC, which acts as a web proxy for VNC
+- **--vnc 0.0.0.0:5901**: Connects to the local VNC server
+- **--listen 0.0.0.0:6080**: Listens on port 6080 for web connections
 
-### Directorio `DOckerFile-metaex/` - La Máquina Víctima
+### Directory `DOckerFile-metaex/` - The Victim Machine
 
-#### 3. `DOckerFile-metaex/Dockerfile` - Constructor de la Máquina Vulnerable
+#### 3. `DOckerFile-metaex/Dockerfile` - Vulnerable Machine Builder
 
-Este Dockerfile crea una máquina intencionalmente insegura para practicar.
+This Dockerfile creates an intentionally insecure machine for practice.
 
-**Filosofía de diseño:**
-A diferencia de Kali (que debe ser seguro y robusto), Metasploitable debe ser vulnerable y fácil de explotar.
+**Design philosophy:**
+Unlike Kali (which must be secure and robust), Metasploitable must be vulnerable and easy to exploit.
 
-**Análisis detallado:**
+**Detailed analysis:**
 
 ```dockerfile
 FROM ubuntu:20.04
 ```
-- Usa Ubuntu 20.04 como base (más antiguo = más vulnerable)
+- Uses Ubuntu 20.04 as base (older = more vulnerable)
 
 ```dockerfile
 ENV DEBIAN_FRONTEND=noninteractive
 ```
-- Evita preguntas durante la instalación automatizada
+- Prevents questions during automated installation
 
 ```dockerfile
 RUN apt-get update && \
@@ -264,54 +264,54 @@ RUN apt-get update && \
         mysql-server \
         ...
 ```
-- **openssh-server**: Servidor SSH para acceso remoto
-- **apache2**: Servidor web Apache
-- **mysql-server**: Base de datos MySQL
-- **vsftpd**: Servidor FTP vulnerable
-- **samba**: Servicios de archivos compartidos
-- **bind9**: Servidor DNS
-- **telnet**: Protocolo inseguro de acceso remoto
-- **xinetd**: Súper-servidor que gestiona otros servicios
+- **openssh-server**: SSH server for remote access
+- **apache2**: Apache web server
+- **mysql-server**: MySQL database
+- **vsftpd**: Vulnerable FTP server
+- **samba**: File sharing services
+- **bind9**: DNS server
+- **telnet**: Insecure remote access protocol
+- **xinetd**: Super-server that manages other services
 
 ```dockerfile
 RUN mkdir /var/run/sshd && \
     echo 'root:toor' | chpasswd && \
     sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 ```
-- **mkdir /var/run/sshd**: Crea directorio necesario para SSH
-- **echo 'root:toor' | chpasswd**: Establece una contraseña DÉBIL para root
-- **sed -i 's/...': Permite login directo como root via SSH (INSEGURO)
+- **mkdir /var/run/sshd**: Creates necessary directory for SSH
+- **echo 'root:toor' | chpasswd**: Sets a WEAK password for root
+- **sed -i 's/...'**: Allows direct root login via SSH (INSECURE)
 
 ```dockerfile
 RUN useradd -ms /bin/bash msfadmin && \
     echo 'msfadmin:msfadmin' | chpasswd
 ```
-- Crea un usuario con usuario y contraseña idénticos (INSEGURO)
+- Creates a user with identical username and password (INSECURE)
 
 ```dockerfile
 EXPOSE 21 22 23 25 53 80 139 445 3306 5432 8009 8180
 ```
-- Expone múltiples puertos para diferentes servicios vulnerables
+- Exposes multiple ports for different vulnerable services
 
-#### 4. `DOckerFile-metaex/start_services.sh` - Iniciador de Servicios Vulnerables
+#### 4. `DOckerFile-metaex/start_services.sh` - Vulnerable Services Launcher
 
 ```bash
 #!/bin/bash
-service ssh start      # Inicia servidor SSH
-service apache2 start  # Inicia servidor web
-service mysql start    # Inicia base de datos
-service xinetd start   # Inicia súper-servidor
-service vsftpd start   # Inicia servidor FTP
-service smbd start     # Inicia servicios Samba
-service bind9 start    # Inicia servidor DNS
-service postfix start  # Inicia servidor de correo
+service ssh start      # Start SSH server
+service apache2 start  # Start web server
+service mysql start    # Start database
+service xinetd start   # Start super-server
+service vsftpd start   # Start FTP server
+service smbd start     # Start Samba services
+service bind9 start    # Start DNS server
+service postfix start  # Start mail server
 ```
 
-Cada servicio representa una superficie de ataque diferente para practicar.
+Each service represents a different attack surface for practice.
 
-### Archivos de Kubernetes - La Orquestación
+### Kubernetes Files - The Orchestration
 
-#### 5. `namespace_ciber.yaml` - Creador del Espacio de Trabajo
+#### 5. `namespace_ciber.yaml` - Workspace Creator
 
 ```yaml
 apiVersion: v1
@@ -320,29 +320,29 @@ metadata:
   name: cyber-lab
 ```
 
-**¿Qué es un Namespace?**
-Un namespace en Kubernetes es como una habitación virtual dentro del cluster. Separa recursos y evita conflictos con otras aplicaciones.
+**What is a Namespace?**
+A namespace in Kubernetes is like a virtual room inside the cluster. It separates resources and avoids conflicts with other applications.
 
-**¿Por qué necesitamos esto?**
-- **Aislamiento**: Nuestro laboratorio no interfiere con otras aplicaciones
-- **Organización**: Todos los recursos relacionados están agrupados
-- **Seguridad**: Podemos aplicar políticas específicas a este espacio
+**Why do we need this?**
+- **Isolation**: Our laboratory doesn't interfere with other applications
+- **Organization**: All related resources are grouped together
+- **Security**: We can apply specific policies to this space
 
-#### 6. `kali-deploy.yaml` - Configuración de Despliegue para Kali
+#### 6. `kali-deploy.yaml` - Kali Deployment Configuration
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 ```
-- **Deployment**: Tipo de recurso que gestiona pods (contenedores en ejecución)
+- **Deployment**: Type of resource that manages pods (running containers)
 
 ```yaml
 metadata:
   name: kali
   namespace: cyber-lab
 ```
-- **name**: Identificador único para este despliegue
-- **namespace**: Especifica en qué namespace crear este recurso
+- **name**: Unique identifier for this deployment
+- **namespace**: Specifies in which namespace to create this resource
 
 ```yaml
 spec:
@@ -350,8 +350,8 @@ spec:
     type: Recreate
   replicas: 1
 ```
-- **strategy: Recreate**: Si necesita actualizar, mata el pod viejo antes de crear uno nuevo
-- **replicas: 1**: Solo mantener una instancia corriendo
+- **strategy: Recreate**: If it needs to update, kill the old pod before creating a new one
+- **replicas: 1**: Only keep one instance running
 
 ```yaml
 selector:
@@ -362,7 +362,7 @@ template:
     labels:
       app: kali
 ```
-- **selector/labels**: Sistema de etiquetado que conecta el Deployment con los pods
+- **selector/labels**: Labeling system that connects the Deployment with the pods
 
 ```yaml
 containers:
@@ -374,14 +374,14 @@ containers:
   - containerPort: 5901
     name: vnc
 ```
-- **image**: Especifica qué imagen de contenedor usar
-- **ports**: Define qué puertos expone el contenedor
+- **image**: Specifies which container image to use
+- **ports**: Defines which ports the container exposes
 
 ```yaml
 securityContext:
   privileged: true
 ```
-- **privileged: true**: Da acceso especial al contenedor (necesario para herramientas de hacking)
+- **privileged: true**: Gives special access to the container (necessary for hacking tools)
 
 ```yaml
 resources:
@@ -394,11 +394,11 @@ resources:
     cpu: "8"
     ephemeral-storage: "10Gi"
 ```
-- **limits**: Máximo de recursos que puede usar
-- **requests**: Recursos mínimos garantizados
-- Kali necesita muchos recursos porque ejecuta herramientas pesadas
+- **limits**: Maximum resources it can use
+- **requests**: Minimum guaranteed resources
+- Kali needs many resources because it runs heavy tools
 
-#### 7. `kali-service.yaml` - Configuración de Red para Kali
+#### 7. `kali-service.yaml` - Kali Network Configuration
 
 ```yaml
 apiVersion: v1
@@ -409,8 +409,8 @@ metadata:
 spec:
   type: NodePort
 ```
-- **Service**: Recurso que expone pods a la red
-- **NodePort**: Tipo de servicio que abre puertos en todos los nodos del cluster
+- **Service**: Resource that exposes pods to the network
+- **NodePort**: Type of service that opens ports on all cluster nodes
 
 ```yaml
 selector:
@@ -422,513 +422,513 @@ ports:
   nodePort: 31000
   name: novnc
 ```
-- **selector**: Conecta este servicio con los pods etiquetados como "kali"
-- **port**: Puerto interno del servicio
-- **targetPort**: Puerto del contenedor
-- **nodePort**: Puerto externo accesible desde fuera del cluster
+- **selector**: Connects this service with pods labeled as "kali"
+- **port**: Internal service port
+- **targetPort**: Container port
+- **nodePort**: External port accessible from outside the cluster
 
-#### 8. `meta-deploy.yaml` y `meta-service.yaml` - Configuración para Metasploitable
+#### 8. `meta-deploy.yaml` and `meta-service.yaml` - Metasploitable Configuration
 
-Similar a los archivos de Kali, pero con configuraciones específicas para la máquina vulnerable:
-- Menos recursos (la máquina víctima no necesita tanto poder)
-- Puertos diferentes (80 para web, 22 para SSH)
-- Sin privilegios especiales (no necesita acceso a bajo nivel)
+Similar to the Kali files, but with specific configurations for the vulnerable machine:
+- Fewer resources (the victim machine doesn't need as much power)
+- Different ports (80 for web, 22 for SSH)
+- No special privileges (doesn't need low-level access)
 
-## Cómo Todo Funciona Junto (El Flujo Completo)
+## How Everything Works Together (The Complete Flow)
 
-### Fase 1: Construcción de Imágenes (Build Time)
+### Phase 1: Image Building (Build Time)
 
-1. **Docker lee el Dockerfile de Kali**:
-   - Descarga la imagen base de Kali Linux
-   - Instala XFCE4, VNC, noVNC y herramientas de hacking
-   - Configura contraseñas y permisos
-   - Copia el script de inicio
-   - Crea la imagen final
+1. **Docker reads the Kali Dockerfile**:
+   - Downloads the Kali Linux base image
+   - Installs XFCE4, VNC, noVNC and hacking tools
+   - Configures passwords and permissions
+   - Copies the startup script
+   - Creates the final image
 
-2. **Docker lee el Dockerfile de Metasploitable**:
-   - Descarga Ubuntu 20.04
-   - Instala servicios vulnerables
-   - Configura usuarios inseguros
-   - Copia scripts de inicio de servicios
-   - Crea la imagen vulnerable
+2. **Docker reads the Metasploitable Dockerfile**:
+   - Downloads Ubuntu 20.04
+   - Installs vulnerable services
+   - Configures insecure users
+   - Copies service startup scripts
+   - Creates the vulnerable image
 
-### Fase 2: Despliegue en Kubernetes (Deploy Time)
+### Phase 2: Kubernetes Deployment (Deploy Time)
 
-1. **Kubernetes lee namespace_ciber.yaml**:
-   - Crea el namespace "cyber-lab"
-   - Establece el espacio de trabajo aislado
+1. **Kubernetes reads namespace_ciber.yaml**:
+   - Creates the "cyber-lab" namespace
+   - Establishes the isolated workspace
 
-2. **Kubernetes lee kali-deploy.yaml**:
-   - Programa la creación de un pod Kali
-   - Asigna recursos (15GB RAM, 10 CPUs, etc.)
-   - Descarga la imagen de Kali si no existe localmente
+2. **Kubernetes reads kali-deploy.yaml**:
+   - Schedules the creation of a Kali pod
+   - Allocates resources (15GB RAM, 10 CPUs, etc.)
+   - Downloads the Kali image if it doesn't exist locally
 
-3. **Kubernetes lee kali-service.yaml**:
-   - Crea un servicio que expone Kali al exterior
-   - Mapea puertos internos a externos (6080→31000, 5901→31001)
+3. **Kubernetes reads kali-service.yaml**:
+   - Creates a service that exposes Kali externally
+   - Maps internal ports to external ones (6080→31000, 5901→31001)
 
-4. **Kubernetes lee meta-deploy.yaml y meta-service.yaml**:
-   - Hace lo mismo para Metasploitable
-   - Expone puertos web (80→31002) y SSH (22→31003)
+4. **Kubernetes reads meta-deploy.yaml and meta-service.yaml**:
+   - Does the same for Metasploitable
+   - Exposes web ports (80→31002) and SSH (22→31003)
 
-### Fase 3: Inicio de Contenedores (Runtime)
+### Phase 3: Container Startup (Runtime)
 
-1. **El contenedor Kali inicia**:
-   - Ejecuta `/root/startup.sh`
-   - El script limpia procesos previos
-   - Inicia Xvfb (pantalla virtual)
-   - Inicia XFCE4 (entorno de escritorio)
-   - Inicia x11vnc (servidor VNC)
-   - Inicia noVNC (proxy web)
+1. **The Kali container starts**:
+   - Executes `/root/startup.sh`
+   - The script cleans previous processes
+   - Starts Xvfb (virtual display)
+   - Starts XFCE4 (desktop environment)
+   - Starts x11vnc (VNC server)
+   - Starts noVNC (web proxy)
 
-2. **El contenedor Metasploitable inicia**:
-   - Ejecuta `/start_services.sh`
-   - Inicia SSH, Apache, MySQL, FTP, etc.
-   - Todos los servicios quedan disponibles
+2. **The Metasploitable container starts**:
+   - Executes `/start_services.sh`
+   - Starts SSH, Apache, MySQL, FTP, etc.
+   - All services become available
 
-### Fase 4: Acceso y Uso (User Time)
+### Phase 4: Access and Usage (User Time)
 
-1. **Usuario accede a Kali via web**:
-   - Navega a `http://cluster-ip:31000`
-   - noVNC muestra el escritorio XFCE4
-   - Usuario puede usar herramientas gráficas
+1. **User accesses Kali via web**:
+   - Navigates to `http://cluster-ip:31000`
+   - noVNC displays the XFCE4 desktop
+   - User can use graphical tools
 
-2. **Usuario realiza reconocimiento**:
-   - Abre terminal en Kali
-   - Ejecuta `nmap` para encontrar Metasploitable
-   - Identifica servicios vulnerables
+2. **User performs reconnaissance**:
+   - Opens terminal in Kali
+   - Runs `nmap` to find Metasploitable
+   - Identifies vulnerable services
 
-3. **Usuario practica ataques**:
-   - Usa Metasploit para explotar vulnerabilidades
-   - Accede via SSH con credenciales débiles
-   - Explora el servidor web vulnerable
+3. **User practices attacks**:
+   - Uses Metasploit to exploit vulnerabilities
+   - Accesses via SSH with weak credentials
+   - Explores the vulnerable web server
 
-## Requisitos del Sistema (¿Qué necesitas?)
+## System Requirements (What do you need?)
 
-### Requisitos de Hardware
+### Hardware Requirements
 
-**¿Por qué necesitamos tantos recursos?**
+**Why do we need so many resources?**
 
-- **Memoria (RAM)**: 
-  - Kali Linux con entorno gráfico: 4-8GB
-  - Metasploitable con múltiples servicios: 2-4GB
+- **Memory (RAM)**: 
+  - Kali Linux with graphical environment: 4-8GB
+  - Metasploitable with multiple services: 2-4GB
   - Kubernetes overhead: 2-4GB
-  - **Total mínimo**: 16GB (recomendado: 32GB)
+  - **Minimum total**: 16GB (recommended: 32GB)
 
 - **CPU**:
-  - Herramientas de hacking son intensivas en CPU
-  - Múltiples contenedores ejecutándose simultáneamente
-  - **Mínimo**: 4 cores (recomendado: 8+ cores)
+  - Hacking tools are CPU-intensive
+  - Multiple containers running simultaneously
+  - **Minimum**: 4 cores (recommended: 8+ cores)
 
-- **Almacenamiento**:
-  - Imágenes de Docker: 10-15GB
-  - Logs y datos temporales: 10-20GB
-  - Espacio para herramientas adicionales: 20GB+
-  - **Mínimo**: 50GB (recomendado: 100GB)
+- **Storage**:
+  - Docker images: 10-15GB
+  - Logs and temporary data: 10-20GB
+  - Space for additional tools: 20GB+
+  - **Minimum**: 50GB (recommended: 100GB)
 
-### Software Requerido
+### Required Software
 
 #### Docker
-**¿Qué es?** Motor de contenedores que ejecuta las aplicaciones aisladas.
-**¿Cómo instalarlo?** Depende de tu sistema operativo:
+**What is it?** Container engine that runs isolated applications.
+**How to install?** Depends on your operating system:
 - **Ubuntu/Debian**: `sudo apt install docker.io`
 - **CentOS/RHEL**: `sudo yum install docker`
 - **Windows/Mac**: Docker Desktop
 
 #### Kubernetes
-**Opciones para principiantes:**
+**Options for beginners:**
 
-1. **minikube** (Recomendado para aprender):
-   - Kubernetes completo en una sola máquina
-   - Fácil de instalar y usar
-   - Perfecto para desarrollo y aprendizaje
+1. **minikube** (Recommended for learning):
+   - Complete Kubernetes on a single machine
+   - Easy to install and use
+   - Perfect for development and learning
 
 2. **kind** (Kubernetes in Docker):
-   - Crea clusters usando contenedores Docker
-   - Muy ligero y rápido
-   - Ideal para pruebas
+   - Creates clusters using Docker containers
+   - Very lightweight and fast
+   - Ideal for testing
 
-3. **k3s** (Kubernetes ligero):
-   - Versión simplificada de Kubernetes
-   - Menor uso de recursos
-   - Bueno para sistemas con recursos limitados
+3. **k3s** (Lightweight Kubernetes):
+   - Simplified version of Kubernetes
+   - Lower resource usage
+   - Good for resource-limited systems
 
 #### kubectl
-**¿Qué es?** Herramienta de línea de comandos para interactuar con Kubernetes.
-**Instalación**: Se incluye con minikube, o se puede descargar por separado.
+**What is it?** Command-line tool for interacting with Kubernetes.
+**Installation**: Included with minikube, or can be downloaded separately.
 
-## Guía de Instalación Paso a Paso (Para Principiantes)
+## Step-by-Step Installation Guide (For Beginners)
 
-### Paso 1: Preparar el Sistema Base
+### Step 1: Prepare the Base System
 
-#### En Ubuntu/Debian:
+#### On Ubuntu/Debian:
 ```bash
-# Actualizar el sistema
+# Update the system
 sudo apt update && sudo apt upgrade -y
 
-# Instalar Docker
+# Install Docker
 sudo apt install docker.io -y
 sudo systemctl start docker
 sudo systemctl enable docker
 
-# Añadir tu usuario al grupo docker
+# Add your user to docker group
 sudo usermod -aG docker $USER
-# Cerrar sesión y volver a entrar
+# Log out and log back in
 
-# Instalar minikube
+# Install minikube
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
-# Instalar kubectl
+# Install kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install kubectl /usr/local/bin/kubectl
 ```
 
-### Paso 2: Iniciar el Cluster de Kubernetes
+### Step 2: Start the Kubernetes Cluster
 
 ```bash
-# Iniciar minikube con recursos adecuados
+# Start minikube with adequate resources
 minikube start --memory=16384 --cpus=8 --disk-size=50g
 
-# Verificar que funciona
+# Verify it works
 kubectl cluster-info
 kubectl get nodes
 ```
 
-**¿Qué está pasando?**
-- minikube crea una máquina virtual con Kubernetes
-- Asigna 16GB RAM, 8 CPUs y 50GB de disco
-- kubectl se conecta automáticamente a este cluster
+**What's happening?**
+- minikube creates a virtual machine with Kubernetes
+- Allocates 16GB RAM, 8 CPUs and 50GB disk
+- kubectl automatically connects to this cluster
 
-### Paso 3: Descargar el Proyecto
+### Step 3: Download the Project
 
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/PabloHurtadoGonzalo86/VMS_CIber_Master.git
 
-# Entrar al directorio
+# Enter the directory
 cd VMS_CIber_Master
 
-# Listar los archivos para verificar
+# List files to verify
 ls -la
 ```
 
-### Paso 4: Desplegar el Laboratorio
+### Step 4: Deploy the Laboratory
 
 ```bash
-# Crear el namespace
+# Create the namespace
 kubectl apply -f namespace_ciber.yaml
 
-# Verificar que se creó
+# Verify it was created
 kubectl get namespaces
 
-# Desplegar Kali Linux
+# Deploy Kali Linux
 kubectl apply -f kali-deploy.yaml
 kubectl apply -f kali-service.yaml
 
-# Desplegar Metasploitable
+# Deploy Metasploitable
 kubectl apply -f meta-deploy.yaml
 kubectl apply -f meta-service.yaml
 ```
 
-### Paso 5: Verificar el Despliegue
+### Step 5: Verify the Deployment
 
 ```bash
-# Ver el estado de los pods
+# See the status of the pods
 kubectl get pods -n cyber-lab
 
-# Esperar hasta que ambos pods estén "Running"
-# Esto puede tomar varios minutos la primera vez
+# Wait until both pods are "Running"
+# This can take several minutes the first time
 
-# Ver los servicios
+# See the services
 kubectl get services -n cyber-lab
 
-# Obtener las URLs de acceso
+# Get access URLs
 minikube service list -n cyber-lab
 ```
 
-### Paso 6: Acceder al Laboratorio
+### Step 6: Access the Laboratory
 
-1. **Obtener la IP del cluster**:
+1. **Get the cluster IP**:
    ```bash
    minikube ip
    ```
 
-2. **Acceder a Kali Linux**:
-   - Abrir navegador web
-   - Navegar a `http://IP_DE_MINIKUBE:31000`
-   - Hacer clic en "Connect"
-   - ¡Ya tienes acceso a Kali Linux!
+2. **Access Kali Linux**:
+   - Open web browser
+   - Navigate to `http://MINIKUBE_IP:31000`
+   - Click "Connect"
+   - You now have access to Kali Linux!
 
-3. **Verificar Metasploitable**:
-   - En el navegador: `http://IP_DE_MINIKUBE:31002`
-   - Deberías ver la página web de Metasploitable
+3. **Verify Metasploitable**:
+   - In browser: `http://MINIKUBE_IP:31002`
+   - You should see the Metasploitable web page
 
-## Ejemplos de Uso Educativo
+## Educational Usage Examples
 
-### Ejercicio 1: Reconocimiento Básico (Nivel Principiante)
+### Exercise 1: Basic Reconnaissance (Beginner Level)
 
-**Objetivo**: Aprender a descubrir sistemas en la red
+**Objective**: Learn to discover systems on the network
 
-**Pasos detallados**:
+**Detailed steps**:
 
-1. **Accede a Kali Linux**:
-   - Abre `http://IP_MINIKUBE:31000` en tu navegador
-   - Verás el escritorio XFCE4
+1. **Access Kali Linux**:
+   - Open `http://MINIKUBE_IP:31000` in your browser
+   - You'll see the XFCE4 desktop
 
-2. **Abre una terminal**:
-   - Clic en el icono de terminal en la barra inferior
-   - O usa el menú: Aplicaciones → Terminal
+2. **Open a terminal**:
+   - Click the terminal icon in the bottom bar
+   - Or use the menu: Applications → Terminal
 
-3. **Descubre la red**:
+3. **Discover the network**:
    ```bash
-   # Primero, encuentra tu propia IP
+   # First, find your own IP
    ip addr show
    
-   # Busca todas las IPs en tu rango de red
+   # Search for all IPs in your network range
    nmap -sn 10.244.0.0/16
    ```
    
-   **¿Qué está pasando?**
-   - `ip addr show` muestra todas las interfaces de red
-   - `nmap -sn` hace un "ping sweep" para encontrar máquinas activas
-   - El rango 10.244.0.0/16 es típico de Kubernetes
+   **What's happening?**
+   - `ip addr show` displays all network interfaces
+   - `nmap -sn` does a "ping sweep" to find active machines
+   - The range 10.244.0.0/16 is typical for Kubernetes
 
-4. **Identifica Metasploitable**:
+4. **Identify Metasploitable**:
    ```bash
-   # Encuentra cuál IP es Metasploitable
-   nmap -sV IP_DE_METASPLOITABLE
+   # Find which IP is Metasploitable
+   nmap -sV METASPLOITABLE_IP
    ```
    
-   **¿Qué verás?**
-   - Puerto 22 (SSH) abierto
-   - Puerto 80 (HTTP) abierto
-   - Posiblemente muchos otros puertos
+   **What you'll see:**
+   - Port 22 (SSH) open
+   - Port 80 (HTTP) open
+   - Possibly many other ports
 
-### Ejercicio 2: Análisis de Servicios Web (Nivel Intermedio)
+### Exercise 2: Web Application Analysis (Intermediate Level)
 
-**Objetivo**: Explorar aplicaciones web vulnerables
+**Objective**: Explore vulnerable web applications
 
-1. **Accede al sitio web**:
-   - En Kali, abre Firefox
-   - Navega a `http://IP_METASPLOITABLE`
+1. **Access the website**:
+   - In Kali, open Firefox
+   - Navigate to `http://METASPLOITABLE_IP`
 
-2. **Enumera directorios**:
+2. **Enumerate directories**:
    ```bash
-   # Busca directorios ocultos
-   dirb http://IP_METASPLOITABLE
+   # Search for hidden directories
+   dirb http://METASPLOITABLE_IP
    
-   # O usa gobuster (más moderno)
-   gobuster dir -u http://IP_METASPLOITABLE -w /usr/share/wordlists/dirb/common.txt
+   # Or use gobuster (more modern)
+   gobuster dir -u http://METASPLOITABLE_IP -w /usr/share/wordlists/dirb/common.txt
    ```
 
-3. **Escanea vulnerabilidades web**:
+3. **Scan for web vulnerabilities**:
    ```bash
-   # Usa nikto para análisis de vulnerabilidades
-   nikto -h http://IP_METASPLOITABLE
+   # Use nikto for vulnerability analysis
+   nikto -h http://METASPLOITABLE_IP
    ```
 
-### Ejercicio 3: Ataque SSH (Nivel Intermedio)
+### Exercise 3: SSH Attack (Intermediate Level)
 
-**Objetivo**: Practicar ataques de fuerza bruta
+**Objective**: Practice brute force attacks
 
-⚠️ **IMPORTANTE**: Solo hazlo en este laboratorio controlado
+⚠️ **IMPORTANT**: Only do this in this controlled laboratory
 
-1. **Ataque manual**:
+1. **Manual attack**:
    ```bash
-   # Intenta login con credenciales comunes
-   ssh msfadmin@IP_METASPLOITABLE
-   # Contraseña: msfadmin
+   # Try login with common credentials
+   ssh msfadmin@METASPLOITABLE_IP
+   # Password: msfadmin
    ```
 
-2. **Ataque automatizado con Hydra**:
+2. **Automated attack with Hydra**:
    ```bash
-   # Crea un archivo con usuarios comunes
-   echo "admin\nroot\nmsfadmin\nuser" > usuarios.txt
+   # Create a file with common users
+   echo "admin\nroot\nmsfadmin\nuser" > users.txt
    
-   # Crea un archivo con contraseñas comunes
+   # Create a file with common passwords
    echo "admin\npassword\n123456\nmsfadmin\ntoor" > passwords.txt
    
-   # Ejecuta el ataque
-   hydra -L usuarios.txt -P passwords.txt ssh://IP_METASPLOITABLE
+   # Execute the attack
+   hydra -L users.txt -P passwords.txt ssh://METASPLOITABLE_IP
    ```
 
-3. **Usando Metasploit**:
+3. **Using Metasploit**:
    ```bash
-   # Abre Metasploit
+   # Open Metasploit
    msfconsole
    
-   # Dentro de Metasploit:
+   # Inside Metasploit:
    use auxiliary/scanner/ssh/ssh_login
-   set RHOSTS IP_METASPLOITABLE
-   set USER_FILE usuarios.txt
+   set RHOSTS METASPLOITABLE_IP
+   set USER_FILE users.txt
    set PASS_FILE passwords.txt
    run
    ```
 
-### Ejercicio 4: Explotación con Metasploit (Nivel Avanzado)
+### Exercise 4: Exploitation with Metasploit (Advanced Level)
 
-**Objetivo**: Usar exploits reales contra vulnerabilidades
+**Objective**: Use real exploits against vulnerabilities
 
-1. **Buscar exploits disponibles**:
+1. **Search for available exploits**:
    ```bash
    msfconsole
    search type:exploit platform:linux
    ```
 
-2. **Usar un exploit específico**:
+2. **Use a specific exploit**:
    ```bash
-   # Ejemplo con vulnerabilidad VSFTPd
+   # Example with VSFTPd vulnerability
    use exploit/unix/ftp/vsftpd_234_backdoor
-   set RHOSTS IP_METASPLOITABLE
+   set RHOSTS METASPLOITABLE_IP
    exploit
    ```
 
-3. **Post-explotación**:
+3. **Post-exploitation**:
    ```bash
-   # Si obtienes una shell:
+   # If you get a shell:
    whoami
    uname -a
    cat /etc/passwd
    ```
 
-## Solución de Problemas Comunes
+## Common Troubleshooting
 
-### Problema 1: Los pods no inician
+### Problem 1: Pods don't start
 
-**Síntomas**:
+**Symptoms**:
 ```bash
 kubectl get pods -n cyber-lab
-# Estado: Pending o CrashLoopBackOff
+# Status: Pending or CrashLoopBackOff
 ```
 
-**Diagnóstico**:
+**Diagnosis**:
 ```bash
-# Ver eventos del pod
-kubectl describe pod NOMBRE_POD -n cyber-lab
+# See pod events
+kubectl describe pod POD_NAME -n cyber-lab
 
-# Ver logs del pod
-kubectl logs NOMBRE_POD -n cyber-lab
+# See pod logs
+kubectl logs POD_NAME -n cyber-lab
 ```
 
-**Soluciones comunes**:
-- **Recursos insuficientes**: Aumentar memoria/CPU de minikube
-- **Imágenes no encontradas**: Verificar conectividad a internet
-- **Permisos**: Verificar que Docker funciona sin sudo
+**Common solutions**:
+- **Insufficient resources**: Increase minikube memory/CPU
+- **Images not found**: Check internet connectivity
+- **Permissions**: Verify Docker works without sudo
 
-### Problema 2: No puedo acceder via web
+### Problem 2: Can't access via web
 
-**Síntomas**: Navegador no carga `http://IP:31000`
+**Symptoms**: Browser doesn't load `http://IP:31000`
 
-**Diagnóstico**:
+**Diagnosis**:
 ```bash
-# Verificar servicios
+# Check services
 kubectl get services -n cyber-lab
 
-# Verificar que minikube expone los puertos
+# Verify minikube exposes ports
 minikube service kali-service -n cyber-lab --url
 ```
 
-**Soluciones**:
-- Usar la URL exacta que da minikube
-- Verificar firewall local
-- Probar con port-forward: `kubectl port-forward -n cyber-lab svc/kali-service 8080:6080`
+**Solutions**:
+- Use the exact URL given by minikube
+- Check local firewall
+- Try port-forward: `kubectl port-forward -n cyber-lab svc/kali-service 8080:6080`
 
-### Problema 3: VNC no funciona
+### Problem 3: VNC doesn't work
 
-**Síntomas**: Pantalla negra o conexión rechazada
+**Symptoms**: Black screen or connection refused
 
-**Diagnóstico**:
+**Diagnosis**:
 ```bash
-# Ejecutar comandos dentro del pod Kali
-kubectl exec -it NOMBRE_POD_KALI -n cyber-lab -- bash
+# Run commands inside the Kali pod
+kubectl exec -it KALI_POD_NAME -n cyber-lab -- bash
 
-# Dentro del pod:
+# Inside the pod:
 ps aux | grep vnc
 ps aux | grep Xvfb
 cat /var/log/startup.log
 ```
 
-**Soluciones**:
-- Reiniciar el pod: `kubectl delete pod NOMBRE_POD_KALI -n cyber-lab`
-- Verificar logs de inicio
-- Comprobar que los puertos están libres
+**Solutions**:
+- Restart the pod: `kubectl delete pod KALI_POD_NAME -n cyber-lab`
+- Check startup logs
+- Verify ports are free
 
-### Problema 4: Metasploitable no responde
+### Problem 4: Metasploitable doesn't respond
 
-**Síntomas**: Servicios no accesibles desde Kali
+**Symptoms**: Services not accessible from Kali
 
-**Diagnóstico**:
+**Diagnosis**:
 ```bash
-# Desde Kali, probar conectividad
-kubectl exec -it NOMBRE_POD_KALI -n cyber-lab -- bash
-ping IP_METASPLOITABLE
-nmap IP_METASPLOITABLE
+# From Kali, test connectivity
+kubectl exec -it KALI_POD_NAME -n cyber-lab -- bash
+ping METASPLOITABLE_IP
+nmap METASPLOITABLE_IP
 ```
 
-**Soluciones**:
-- Verificar que ambos pods están en el mismo namespace
-- Comprobar políticas de red de Kubernetes
-- Reiniciar el pod Metasploitable
+**Solutions**:
+- Verify both pods are in the same namespace
+- Check Kubernetes network policies
+- Restart the Metasploitable pod
 
-## Consideraciones de Seguridad y Éticas
+## Security and Ethical Considerations
 
-### ¿Por qué es seguro este laboratorio?
+### Why is this laboratory safe?
 
-1. **Aislamiento por contenedores**: Todo está encapsulado en contenedores
-2. **Aislamiento por namespace**: Separado del resto del sistema
-3. **Red privada**: Solo accesible desde tu máquina local
-4. **Máquinas virtuales**: minikube corre en una VM separada
+1. **Container isolation**: Everything is encapsulated in containers
+2. **Namespace isolation**: Separated from the rest of the system
+3. **Private network**: Only accessible from your local machine
+4. **Virtual machines**: minikube runs in a separate VM
 
-### Reglas éticas fundamentales
+### Fundamental ethical rules
 
-1. **Solo para educación**: Nunca uses estas técnicas contra sistemas reales sin autorización
-2. **Entorno controlado**: Mantén siempre el laboratorio aislado
-3. **Responsabilidad**: Si encuentras vulnerabilidades reales, repórtalas responsablemente
-4. **Legalidad**: Asegúrate de cumplir las leyes locales sobre ciberseguridad
+1. **Education only**: Never use these techniques against real systems without authorization
+2. **Controlled environment**: Always keep the laboratory isolated
+3. **Responsibility**: If you find real vulnerabilities, report them responsibly
+4. **Legality**: Make sure to comply with local cybersecurity laws
 
-### Mejores prácticas
+### Best practices
 
-1. **Actualizaciones regulares**: Mantén las imágenes actualizadas
-2. **Logs y monitorización**: Revisa logs regularmente para aprender
-3. **Limpieza**: Elimina el laboratorio cuando no lo uses
-4. **Documentación**: Documenta tus experimentos y hallazgos
+1. **Regular updates**: Keep images updated
+2. **Logs and monitoring**: Review logs regularly to learn
+3. **Cleanup**: Remove the laboratory when not in use
+4. **Documentation**: Document your experiments and findings
 
-## Limpieza y Mantenimiento
+## Cleanup and Maintenance
 
-### Eliminar el laboratorio completamente
+### Completely remove the laboratory
 
 ```bash
-# Eliminar todos los recursos
+# Delete all resources
 kubectl delete namespace cyber-lab
 
-# Detener minikube
+# Stop minikube
 minikube stop
 
-# Eliminar minikube (opcional)
+# Delete minikube (optional)
 minikube delete
 ```
 
-### Reiniciar solo los pods
+### Restart only the pods
 
 ```bash
-# Reiniciar Kali
+# Restart Kali
 kubectl delete pod -l app=kali -n cyber-lab
 
-# Reiniciar Metasploitable
+# Restart Metasploitable
 kubectl delete pod -l app=metasploitable -n cyber-lab
 ```
 
-### Actualizar imágenes
+### Update images
 
 ```bash
-# Forzar descarga de nuevas imágenes
+# Force download of new images
 kubectl rollout restart deployment/kali -n cyber-lab
 kubectl rollout restart deployment/metasploitable -n cyber-lab
 ```
 
 ---
 
-**Recuerda**: El conocimiento adquirido en este laboratorio debe usarse para mejorar la seguridad, no para causar daño. Siempre practica principios de hacking ético y respeta los límites legales.
+**Remember**: The knowledge acquired in this laboratory should be used to improve security, not to cause harm. Always practice ethical hacking principles and respect legal boundaries.
 
-**¡Bienvenido al fascinante mundo de la ciberseguridad!** 🛡️💻
+**Welcome to the fascinating world of cybersecurity!** 🛡️💻
